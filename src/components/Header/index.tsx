@@ -8,6 +8,7 @@ import {
   Typography,
   IconButton,
   Menu,
+  useTheme,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -17,8 +18,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { pages } from '../../utils/commons';
 
 function Header() {
+  const theme = useTheme();
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [position, setPosition] = useState(window.pageYOffset);
+  const transparent = position < (theme.mixins.toolbar.minHeight as number);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -27,23 +31,20 @@ function Header() {
     navigate(to);
     setAnchorElNav(null);
   };
-
   const onClickNavigate = (to: string) => {
     navigate(to);
   };
 
-  const [position, setPosition] = useState(window.pageYOffset);
-  const transparent = position < 56;
   useEffect(() => {
     const handleScroll = () => {
-      let moving = window.pageYOffset;
+      const moving = window.pageYOffset;
       setPosition(moving);
     };
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  });
+  }, []);
 
   return (
     <AppBar
