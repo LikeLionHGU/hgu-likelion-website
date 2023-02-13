@@ -9,6 +9,7 @@ const BackgroundImg = styled(Box)(() => ({
   backgroundSize: 'cover',
   backgroundPosition: 'center center',
   width: '100%',
+  maxHeight: '100vh',
 }));
 
 const Heading = styled(Box)(() => ({
@@ -19,6 +20,7 @@ const Heading = styled(Box)(() => ({
   justifyContent: 'center',
   alignItems: 'center',
   whiteSpace: 'pre-wrap',
+  maxHeight: '100vh',
 }));
 
 const Title = styled(Typography)(({ theme }) => ({
