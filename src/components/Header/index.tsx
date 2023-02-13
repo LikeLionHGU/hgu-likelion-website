@@ -27,11 +27,14 @@ function Header() {
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleCloseNavMenu = (to: string) => {
-    navigate(to);
+  const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-  const onClickNavigate = (to: string) => {
+  const onClickMenuItem = (to: string) => {
+    navigate(to);
+    handleCloseNavMenu();
+  };
+  const onClickNavigateBtn = (to: string) => {
     navigate(to);
   };
 
@@ -98,7 +101,7 @@ function Header() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.title} onClick={() => handleCloseNavMenu(page.to)}>
+                <MenuItem key={page.title} onClick={() => onClickMenuItem(page.to)}>
                   <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
@@ -109,7 +112,7 @@ function Header() {
               <Button
                 color="inherit"
                 key={page.title}
-                onClick={() => onClickNavigate(page.to)}
+                onClick={() => onClickNavigateBtn(page.to)}
                 sx={{ display: 'block', px: 2 }}
               >
                 {page.title}
