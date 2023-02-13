@@ -1,16 +1,9 @@
 import { Box, Container, styled, Typography } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import { pageInfos } from '../utils/commons';
+import { BgImage } from './BgImage';
 
 const imageHeight = 650;
-
-const BackgroundImg = styled(Box)(() => ({
-  zIndex: -1,
-  backgroundSize: 'cover',
-  backgroundPosition: 'center center',
-  width: '100%',
-  maxHeight: '100vh',
-}));
 
 const Heading = styled(Box)(() => ({
   position: 'absolute',
@@ -50,18 +43,14 @@ export function Wrapper({ children }: Props) {
   return (
     <>
       <Heading color="#fff" sx={{ height: isMain ? '100vh' : imageHeight }}>
-        <Box display="block" textAlign="center" p={4}>
+        <Container sx={{ textAlign: 'center' }}>
           <Title variant="h1" gutterBottom={!isMain}>
             {pageInfo.title}
           </Title>
           {!isMain && <Typography variant="h6">{pageInfo.description}</Typography>}
-        </Box>
+        </Container>
       </Heading>
-      <BackgroundImg
-        sx={{ backgroundImage: `url(${pageInfo.bgImage})`, height: isMain ? '100vh' : imageHeight }}
-      >
-        <Box width="100%" height="100%" bgcolor="rgb(33, 33, 33)" sx={{ opacity: 0.46 }} />
-      </BackgroundImg>
+      <BgImage image={pageInfo.bgImage} height={isMain ? '100vh' : imageHeight} />
       <Container maxWidth="md" sx={{ py: 15 }}>
         {children}
       </Container>
