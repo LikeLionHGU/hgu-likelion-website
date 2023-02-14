@@ -1,4 +1,5 @@
 import { Box, Container, styled, Typography } from '@mui/material';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { pageInfos } from '../utils/commons';
 import { BgImage } from './BgImage';
@@ -40,10 +41,14 @@ export function Wrapper({ children }: Props) {
   };
   const pageInfo = getPageInfo();
   const isMain = pathname === '/';
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <>
       <Heading color="#fff" sx={{ height: isMain ? '100vh' : imageHeight }}>
-        <Container sx={{ textAlign: 'center' }}>
+        <Container sx={{ textAlign: 'center', wordBreak: 'keep-all' }}>
           <Title variant="h1" gutterBottom={!isMain}>
             {pageInfo.title}
           </Title>
@@ -51,7 +56,7 @@ export function Wrapper({ children }: Props) {
         </Container>
       </Heading>
       <BgImage image={pageInfo.bgImage} height={isMain ? '100vh' : imageHeight} />
-      <Container maxWidth="md" sx={{ py: 15 }}>
+      <Container maxWidth="md" sx={{ pt: 10, pb: 15 }}>
         {children}
       </Container>
     </>
