@@ -16,6 +16,7 @@ interface IFormData {
   answer1: string;
   answer2: string;
   answer3: string;
+  link: string;
 }
 
 export default function Apply() {
@@ -37,6 +38,7 @@ export default function Apply() {
       answer1: '',
       answer2: '',
       answer3: '',
+      link: '',
     },
   });
   const onSave = (data: IFormData) => {
@@ -99,7 +101,9 @@ export default function Apply() {
           size="small"
           placeholder="이름을 입력하세요."
           disabled={!isLogin}
+          error={Boolean(errors.name)}
           helperText={errors.name?.message}
+          sx={{ width: 240 }}
         />
         <Box sx={{ height: 16 }} />
         <InputLabel>이메일</InputLabel>
@@ -114,20 +118,24 @@ export default function Apply() {
           size="small"
           placeholder="이메일을 입력하세요."
           disabled={!isLogin}
+          error={Boolean(errors.email)}
           helperText={errors.email?.message}
+          sx={{ width: 240 }}
         />
         <Box sx={{ height: 16 }} />
         <InputLabel>학번</InputLabel>
         <TextField
           {...register('studentNumber', {
             required: '필수 입력 항목입니다.',
-            minLength: { value: 8, message: '학번 8글자를 입력해주세요' },
-            maxLength: { value: 8, message: '학번 8글자를 입력해주세요' },
+            minLength: { value: 8, message: '학번 8글자를 입력해주세요.' },
+            maxLength: { value: 8, message: '학번 8글자를 입력해주세요.' },
           })}
           size="small"
           placeholder="학번을 입력하세요."
           disabled={!isLogin}
+          error={Boolean(errors.studentNumber)}
           helperText={errors.studentNumber?.message}
+          sx={{ width: 240 }}
           type="number"
         />
         <Box sx={{ height: 16 }} />
@@ -137,6 +145,7 @@ export default function Apply() {
           size="small"
           placeholder="답변을 입력하세요."
           disabled={!isLogin}
+          error={Boolean(errors.answer1)}
           helperText={errors.answer1?.message}
           multiline
           rows={8}
@@ -149,6 +158,7 @@ export default function Apply() {
           size="small"
           placeholder="답변을 입력하세요."
           disabled={!isLogin}
+          error={Boolean(errors.answer2)}
           helperText={errors.answer2?.message}
           multiline
           rows={8}
@@ -161,9 +171,21 @@ export default function Apply() {
           size="small"
           placeholder="답변을 입력하세요."
           disabled={!isLogin}
+          error={Boolean(errors.answer3)}
           helperText={errors.answer3?.message}
           multiline
           rows={8}
+          fullWidth
+        />
+        <Box sx={{ height: 16 }} />
+        <InputLabel>추가 링크 (선택)</InputLabel>
+        <TextField
+          {...register('link')}
+          size="small"
+          placeholder="포트폴리오나 블로그 링크가 있으면 입력해주세요."
+          disabled={!isLogin}
+          error={Boolean(errors.link)}
+          helperText={errors.link?.message}
           fullWidth
         />
         <Box sx={{ height: 32 }} />
