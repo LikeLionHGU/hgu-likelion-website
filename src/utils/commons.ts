@@ -14,7 +14,7 @@ export const pageInfos = {
   main: { title: '메인 페이지에\n들어갈\n내용을 적어주세요', description: '', bgImage: mainBg },
   apply: {
     title: '지원하기',
-    description: '지원하기 전 반드시 아래의 질문에 대해 충분히 고민해보세요.',
+    description: '한동대학교 계정으로 로그인 후 지원서를 작성해주세요.',
     bgImage: applyBg,
   },
   faq: {
