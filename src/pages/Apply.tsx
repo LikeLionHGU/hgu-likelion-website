@@ -1,11 +1,21 @@
-import { Box, Button, InputLabel, Skeleton, TextField } from '@mui/material';
+import {
+  Box,
+  Button,
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  MenuItem,
+  Select,
+  Skeleton,
+  TextField,
+} from '@mui/material';
 import { Helmet } from 'react-helmet-async';
 import GoogleIcon from '@mui/icons-material/Google';
 import { auth } from '../service/firebase';
 import { googleLogin, handleClickLogoutBtn, logout } from '../service/auth';
 import { useEffect, useState } from 'react';
 import { onAuthStateChanged, User } from 'firebase/auth';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { checkEmail } from '../utils/functions';
 import { useSnackbar } from 'notistack';
 
@@ -13,6 +23,7 @@ interface IFormData {
   name: string;
   email: string;
   studentNumber: string;
+  field: string;
   answer1: string;
   answer2: string;
   answer3: string;
@@ -26,15 +37,17 @@ export default function Apply() {
   const isLogin = Boolean(user);
   const {
     register,
-    handleSubmit,
     formState: { errors },
-    setValue,
+    handleSubmit,
     reset,
+    setValue,
+    control,
   } = useForm<IFormData>({
     defaultValues: {
       name: '',
       email: '',
       studentNumber: '',
+      field: '',
       answer1: '',
       answer2: '',
       answer3: '',
@@ -138,6 +151,34 @@ export default function Apply() {
           sx={{ width: 240 }}
           type="number"
         />
+        <Box sx={{ height: 16 }} />
+        <InputLabel>지원분야</InputLabel>
+        <FormControl>
+          <Controller
+            name="field"
+            control={control}
+            rules={{ required: '필수 입력 항목입니다.' }}
+            render={({ field }) => (
+              <Select
+                {...field}
+                size="small"
+                disabled={!isLogin}
+                error={Boolean(errors.field)}
+                sx={{ width: 240 }}
+                displayEmpty
+              >
+                <MenuItem value="" sx={{ display: 'none' }}>
+                  지원분야를 선택하세요.
+                </MenuItem>
+                <MenuItem value="기획">기획</MenuItem>
+                <MenuItem value="디자인">디자인</MenuItem>
+                <MenuItem value="프론트엔드">프론트엔드</MenuItem>
+                <MenuItem value="백엔드">백엔드</MenuItem>
+              </Select>
+            )}
+          />
+          {errors.field && <FormHelperText error={true}>{errors.field.message}</FormHelperText>}
+        </FormControl>
         <Box sx={{ height: 16 }} />
         <InputLabel>질문1</InputLabel>
         <TextField
