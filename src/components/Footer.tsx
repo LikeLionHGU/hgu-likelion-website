@@ -2,6 +2,7 @@ import { Box, Container, IconButton, Typography } from '@mui/material';
 import logoWImg from '../assets/likelion_w_logo.png';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import { githubAddress, instagramAddress } from '../utils/commons';
 
 function Footer() {
   return (
@@ -14,15 +15,10 @@ function Footer() {
           <span>(주)멋쟁이사자처럼</span>|<span>한동대학교</span>
         </Typography>
         <Box sx={{ display: 'flex', gap: 1 }}>
-          <IconButton
-            color="inherit"
-            component="a"
-            href="https://www.instagram.com/likelion_hgu/"
-            target="_blank"
-          >
+          <IconButton color="inherit" component="a" href={instagramAddress} target="_blank">
             <InstagramIcon fontSize="large" />
           </IconButton>
-          <IconButton color="inherit" component="a" href="https://github.com/" target="_blank">
+          <IconButton color="inherit" component="a" href={githubAddress} target="_blank">
             <GitHubIcon fontSize="large" />
           </IconButton>
         </Box>

@@ -28,3 +28,10 @@ export const pageInfos = {
     bgImage: contactBg,
   },
 };
+
+export const address = '경상북도 포항시 북구 흥해읍 한동로 558 한동대학교';
+export const mailAddress = 'handong@likelion.org';
+export const instagramAddress = 'https://www.instagram.com/likelion_hgu/';
+export const githubAddress = 'https://github.com/';
+
+export const position = { name: '한동대학교', latitude: 36.103116, longitude: 129.388368 };
