@@ -36,7 +36,7 @@ export default function FAQ() {
         <title>FAQ - 멋쟁이사자처럼 한동대</title>
       </Helmet>
       <Box sx={{ display: 'flex', justifyContent: 'center', mb: 6 }}>
-        <Typography variant="h3">🙋🏻‍♂️ 지원 및 선발 🙋🏻‍♀️</Typography>
+        <Typography variant="h3">🙋🏻‍♂️&nbsp;&nbsp;지원 및 선발&nbsp;&nbsp;🙋🏻‍♀️</Typography>
       </Box>
       <Grid container columns={2}>
         {faq.map((item, index) => (
