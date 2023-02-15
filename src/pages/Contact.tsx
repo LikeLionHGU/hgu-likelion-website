@@ -39,6 +39,7 @@ export default function Contact() {
               >
                 <InstagramIcon fontSize="large" />
               </IconButton>
+              <Box sx={{ height: 32 }} />
             </Box>
           </Box>
         </Grid>
