@@ -4,10 +4,9 @@ import faqBg from '../assets/background/faq.jpg';
 import contactBg from '../assets/background/contact.jpg';
 
 export const pages = [
-  { title: '소개', to: '/' },
-  { title: '지원하기', to: '/apply' },
-  { title: 'FAQ', to: '/faq' },
-  { title: '문의하기', to: '/contact' },
+  { title: 'HOME', to: '/' },
+  { title: 'RECRUIT', to: '/recruit' },
+  { title: 'CONTACT', to: '/contact' },
 ];
 
 export const pageInfos = {

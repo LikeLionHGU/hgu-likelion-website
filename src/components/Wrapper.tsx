@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { pageInfos } from '../utils/commons';
 import { BgImage } from './BgImage';
+import mainTitleImage from '../assets/main_title.svg';
 
 const imageHeight = 650;
 
@@ -48,17 +49,25 @@ export function Wrapper({ children }: Props) {
   return (
     <>
       <Heading color="#fff" sx={{ height: isMain ? '100vh' : imageHeight }}>
-        <Container sx={{ textAlign: 'center', wordBreak: 'keep-all' }}>
-          <Title variant="h1" gutterBottom={!isMain}>
-            {pageInfo.title}
-          </Title>
-          {!isMain && <Typography variant="h6">{pageInfo.description}</Typography>}
+        <Container sx={{ display: 'flex', justifyContent: 'center' }}>
+          {isMain ? (
+            <Box component="img" src={mainTitleImage} alt="main title" />
+          ) : (
+            <Box sx={{ textAlign: 'center', wordBreak: 'keep-all' }}>
+              <Title variant="h1" gutterBottom>
+                {pageInfo.title}
+              </Title>
+              <Typography variant="h6">{pageInfo.description}</Typography>
+            </Box>
+          )}
         </Container>
       </Heading>
-      <BgImage image={pageInfo.bgImage} height={isMain ? '100vh' : imageHeight} />
-      <Container maxWidth="md" sx={{ pt: 10, pb: 15 }}>
-        {children}
-      </Container>
+      {isMain ? (
+        <Box sx={{ height: '100vh', backgroundColor: 'common.black' }} />
+      ) : (
+        <BgImage image={pageInfo.bgImage} height={isMain ? '100vh' : imageHeight} />
+      )}
+      <Container sx={{ py: 15 }}>{children}</Container>
     </>
   );
 }

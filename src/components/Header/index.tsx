@@ -11,7 +11,7 @@ import {
   useTheme,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import logoImg from '../../assets/likelion_logo.png';
 import logoWImg from '../../assets/likelion_w_logo.png';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -34,9 +34,6 @@ function Header() {
     navigate(to);
     handleCloseNavMenu();
   };
-  const onClickNavigateBtn = (to: string) => {
-    navigate(to);
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,16 +52,14 @@ function Header() {
       color="transparent"
       sx={{
         boxShadow: 0,
+        color: 'common.white',
         '&.transparent': {
           backgroundColor: 'transparent',
-          color: 'common.white',
-          transition: 'background-color 0.1s ease-out, border 0.1s ease-out',
+          transition: 'background-color 0.1s ease-out',
         },
         '&.paper': {
           backgroundColor: 'background.paper',
-          color: 'common.black',
-          borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
-          transition: 'background-color 0.1s ease-out, border 0.1s ease-out',
+          transition: 'background-color 0.1s ease-out',
         },
       }}
       className={`${transparent ? 'transparent' : 'paper'}`}
@@ -72,11 +67,7 @@ function Header() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box component={Link} to="/">
-            {transparent ? (
-              <Box component="img" src={logoWImg} height={18} />
-            ) : (
-              <Box component="img" src={logoImg} height={18} />
-            )}
+            <Box component="img" src={logoWImg} height={18} />
           </Box>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -109,14 +100,15 @@ function Header() {
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
-                color="inherit"
+              <NavLink
                 key={page.title}
-                onClick={() => onClickNavigateBtn(page.to)}
-                sx={{ display: 'block', px: 2 }}
+                to={page.to}
+                style={({ isActive }) => ({
+                  color: isActive ? '#FFFFFF' : '#787878',
+                })}
               >
-                {page.title}
-              </Button>
+                <Button sx={{ color: 'inherit', display: 'block', px: 2 }}>{page.title}</Button>
+              </NavLink>
             ))}
           </Box>
         </Toolbar>
