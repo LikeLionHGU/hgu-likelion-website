@@ -11,7 +11,7 @@ export default function Contact() {
   return (
     <>
       <Helmet>
-        <title>문의하기 - 멋쟁이사자처럼 한동대</title>
+        <title>CONTACT - 멋쟁이사자처럼 한동대</title>
       </Helmet>
       <Grid container columnSpacing={2} rowSpacing={10} columns={2}>
         <Grid item xs={2} sm={1}>

@@ -1,10 +1,14 @@
 import { Box, Button, Container, styled, Toolbar, Typography } from '@mui/material';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { applyLink, pageInfos } from '../utils/commons';
 import { BgImage } from './BgImage';
 import mainTitleImage from '../assets/main_title.svg';
+import blur from '../assets/background/blur.png';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import TextTransition, { presets } from 'react-text-transition';
+
+const TEXTS = ['교육합니다', '도전합니다', '함께합니다', '성장합니다'];
 
 const imageHeight = 594;
 
@@ -33,6 +37,7 @@ interface Props {
 }
 
 export function Wrapper({ children }: Props) {
+  const [index, setIndex] = useState(0);
   const { pathname } = useLocation();
   const getPageInfo = () => {
     if (pathname === '/recruit') return pageInfos.recruit;
@@ -45,6 +50,10 @@ export function Wrapper({ children }: Props) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+  useEffect(() => {
+    const intervalId = setInterval(() => setIndex((index) => index + 1), 4000);
+    return () => clearTimeout(intervalId);
+  }, []);
 
   return (
     <>
@@ -92,7 +101,41 @@ export function Wrapper({ children }: Props) {
           width: 1,
         }}
       />
-      {isMain ? <Box sx={{ height: '100vh', backgroundColor: 'common.black' }} /> : <BgImage />}
+      {isMain ? (
+        <>
+          <Box sx={{ height: '100vh', backgroundColor: 'common.black' }} />
+          <Box
+            sx={{
+              backgroundImage: `url(${blur})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+              height: { xs: 220, sm: 312 },
+            }}
+          >
+            <Box
+              width="100%"
+              height="100%"
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: { xs: 4, sm: 8 },
+                color: 'common.white',
+              }}
+            >
+              <Typography variant="h2">멋쟁이사차처럼은</Typography>
+              <Typography variant="h2" color="primary.main">
+                <TextTransition springConfig={presets.molasses}>
+                  {TEXTS[index % TEXTS.length]}
+                </TextTransition>
+              </Typography>
+            </Box>
+          </Box>
+        </>
+      ) : (
+        <BgImage />
+      )}
       <Box sx={{ backgroundColor: isMain ? 'common.white' : 'background.default' }}>
         <Container sx={{ px: 3, py: { xs: 10, sm: 15 } }}>{children}</Container>
       </Box>
