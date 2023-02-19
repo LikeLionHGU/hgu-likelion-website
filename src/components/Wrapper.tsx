@@ -67,7 +67,7 @@ export function Wrapper({ children }: Props) {
           ) : (
             <Box sx={{ wordBreak: 'keep-all' }}>
               <Title variant="h1">{pageInfo.title}</Title>
-              <Typography variant="h6" mb={5}>
+              <Typography variant="h6" sx={{ minHeight: 64 }} mb={5}>
                 {pageInfo.description}
               </Typography>
               {isRecruit ? (
