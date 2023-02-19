@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
 import card1 from '../assets/main/card1.svg';
-import card2 from '../assets/main/card2.jpeg';
+import card2 from '../assets/main/card2.png';
 import card3 from '../assets/main/card3.svg';
 import card4 from '../assets/main/card4.png';
 
