@@ -33,7 +33,8 @@ const typography = {
   fontWeightMedium: 600,
   fontWeightBold: 700,
   h1: {
-    fontWeight: 800,
+    fontFamily: 'roc-grotesk-wide, sans-serif',
+    fontWeight: 700,
     lineHeight: 80 / 64,
     fontSize: pxToRem(40),
     ...responsiveFontSizes({ sm: 52, md: 58, lg: 64 }),
@@ -46,8 +47,9 @@ const typography = {
   },
   h3: {
     fontWeight: 700,
-    lineHeight: 1.5,
+    lineHeight: 1.7,
     fontSize: pxToRem(24),
+    color: '#FF731D',
     ...responsiveFontSizes({ sm: 26, md: 30, lg: 32 }),
   },
   h4: {
@@ -65,6 +67,7 @@ const typography = {
   h6: {
     fontWeight: 700,
     lineHeight: 1.7,
+    color: '#000000',
     fontSize: pxToRem(17),
     ...responsiveFontSizes({ sm: 18, md: 18, lg: 18 }),
   },
@@ -79,7 +82,7 @@ const typography = {
     fontSize: pxToRem(14),
   },
   body1: {
-    lineHeight: 1.7,
+    lineHeight: 1.5,
     fontSize: pxToRem(16),
   },
   body2: {

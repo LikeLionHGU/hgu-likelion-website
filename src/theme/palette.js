@@ -94,8 +94,8 @@ export default function palette(themeMode) {
       disabled: GREY[500],
     },
     background: {
-      default: '#FAFAFA',
-      paper: '#fff',
+      default: '#000000',
+      paper: '#1F1F1F',
       neutral: GREY[200],
     },
     action: {

@@ -3,6 +3,9 @@ import { Helmet } from 'react-helmet-async';
 import { address, instagramAddress, mailAddress } from '../utils/commons';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import Map from '../components/Map';
+import group5206 from '../assets/contact/group5206.svg';
+import vector45 from '../assets/contact/vector45.svg';
+import vector50 from '../assets/contact/vector50.svg';
 
 export default function Contact() {
   return (
@@ -10,36 +13,43 @@ export default function Contact() {
       <Helmet>
         <title>문의하기 - 멋쟁이사자처럼 한동대</title>
       </Helmet>
-      <Grid container columns={2}>
+      <Grid container columnSpacing={2} rowSpacing={10} columns={2}>
         <Grid item xs={2} sm={1}>
-          <Box>
-            <Typography variant="h4" gutterBottom>
-              🗺&nbsp;&nbsp;주소
+          <Box sx={{ color: 'common.white' }}>
+            <Typography
+              variant="h4"
+              sx={{ display: 'flex', alignItems: 'center', gap: '14px' }}
+              gutterBottom
+            >
+              <Box component="img" src={group5206} alt="group5206" sx={{ height: 28 }} />
+              주소
             </Typography>
             <Typography>{address}</Typography>
             <Box sx={{ height: 32 }} />
-            <Typography variant="h4" gutterBottom>
-              📧&nbsp;&nbsp;이메일
+            <Typography
+              variant="h4"
+              sx={{ display: 'flex', alignItems: 'center', gap: '14px' }}
+              gutterBottom
+            >
+              <Box component="img" src={vector45} alt="vector45" sx={{ height: 28 }} />
+              이메일
             </Typography>
-            <Link href={`mailto:${mailAddress}`}>{mailAddress}</Link>
+            <Link color="common.white" href={`mailto:${mailAddress}`}>
+              {mailAddress} (한동대학교 대표)
+            </Link>
             <Box sx={{ height: 32 }} />
-            <Typography variant="h4" gutterBottom>
-              💬&nbsp;&nbsp;Direct Message
+            <Typography
+              variant="h4"
+              sx={{ display: 'flex', alignItems: 'center', gap: '14px' }}
+              gutterBottom
+            >
+              <Box component="img" src={vector50} alt="vector50" sx={{ height: 28 }} />
+              Direct Message
             </Typography>
             <Box sx={{ color: 'common.white' }}>
-              <IconButton
-                color="inherit"
-                component="a"
-                href={instagramAddress}
-                target="_blank"
-                sx={{
-                  background:
-                    'radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);',
-                }}
-              >
+              <IconButton color="inherit" component="a" href={instagramAddress} target="_blank">
                 <InstagramIcon fontSize="large" />
               </IconButton>
-              <Box sx={{ height: 32 }} />
             </Box>
           </Box>
         </Grid>
