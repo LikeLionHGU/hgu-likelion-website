@@ -130,7 +130,7 @@ export function Wrapper({ children }: Props) {
                 color: 'common.white',
               }}
             >
-              <Typography variant="h2">멋쟁이사차처럼은</Typography>
+              <Typography variant="h2">멋쟁이사자처럼은</Typography>
               <Typography variant="h2" color="primary.main">
                 <TextTransition springConfig={presets.molasses}>
                   {TEXTS[index % TEXTS.length]}
