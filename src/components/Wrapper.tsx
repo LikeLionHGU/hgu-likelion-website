@@ -1,6 +1,7 @@
 import { Box, Button, Container, styled, Toolbar, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { applyLink, pageInfos } from '../utils/commons';
 import { BgImage } from './BgImage';
 import mainTitleImage from '../assets/main_title.svg';
@@ -63,7 +64,12 @@ export function Wrapper({ children }: Props) {
           sx={{ display: 'flex', justifyContent: isMain ? 'center' : 'flex-start', px: 3 }}
         >
           {isMain ? (
-            <Box component="img" src={mainTitleImage} alt="main title" />
+            <motion.img
+              src={mainTitleImage}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 2 }}
+            />
           ) : (
             <Box sx={{ wordBreak: 'keep-all' }}>
               <Title variant="h1">{pageInfo.title}</Title>
