@@ -12,7 +12,6 @@ import {
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import logoImg from '../../assets/likelion_logo.png';
 import logoWImg from '../../assets/likelion_w_logo.png';
 import MenuIcon from '@mui/icons-material/Menu';
 import { pages } from '../../utils/commons';
@@ -54,7 +53,7 @@ function Header() {
         boxShadow: 0,
         color: 'common.white',
         '&.transparent': {
-          backgroundColor: 'transparent',
+          backgroundColor: 'common.black',
           transition: 'background-color 0.1s ease-out',
         },
         '&.paper': {
@@ -93,7 +92,14 @@ function Header() {
             >
               {pages.map((page) => (
                 <MenuItem key={page.title} onClick={() => onClickMenuItem(page.to)}>
-                  <Typography textAlign="center">{page.title}</Typography>
+                  <NavLink
+                    to={page.to}
+                    style={({ isActive }) => ({
+                      color: isActive ? '#FFFFFF' : '#787878',
+                    })}
+                  >
+                    <Typography textAlign="center">{page.title}</Typography>
+                  </NavLink>
                 </MenuItem>
               ))}
             </Menu>
@@ -107,7 +113,9 @@ function Header() {
                   color: isActive ? '#FFFFFF' : '#787878',
                 })}
               >
-                <Button sx={{ color: 'inherit', display: 'block', px: 2 }}>{page.title}</Button>
+                <Button color="secondary" sx={{ color: 'inherit', display: 'block', px: 2 }}>
+                  {page.title}
+                </Button>
               </NavLink>
             ))}
           </Box>
