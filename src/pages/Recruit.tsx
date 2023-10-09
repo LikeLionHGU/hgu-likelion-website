@@ -1,13 +1,13 @@
 import { Box, styled, Tab, Tabs, Typography } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
-import group5191 from '../assets/recruit/group5191.svg';
-import group5200 from '../assets/recruit/group5200.svg';
-import group5203 from '../assets/recruit/group5203.svg';
 import vector20 from '../assets/recruit/vector20.svg';
 import group5221 from '../assets/recruit/group5221.svg';
-import group5217 from '../assets/recruit/mobile/group5217.svg';
-import group5218 from '../assets/recruit/mobile/group5218.svg';
-import group5220 from '../assets/recruit/mobile/group5220.svg';
+import howtoapply from '../assets/recruit/howtoapply.svg';
+import schedule from '../assets/recruit/schedule.svg';
+import questions from '../assets/recruit/questions.svg';
+import howtoapply_mobile from '../assets/recruit/mobile/howtoapply_mobile.svg';
+import schedule_mobile from '../assets/recruit/mobile/schedule_mobile.svg';
+import questions_mobile from '../assets/recruit/mobile/questions_mobile.svg';
 import rec_planner from '../assets/recruit/rec_planner.svg';
 import { useState } from 'react';
 
@@ -201,9 +201,9 @@ export default function Recruit() {
       >
         <Box>
           <Box component="img" src={vector20} alt="vector20" mb={1.5} />
-          <Box component="img" src={group5200} alt="group5200" />
+          <Box component="img" src={howtoapply} alt="howtoapply" />
         </Box>
-        <Box component="img" src={group5191} alt="group5191" />
+        <Box component="img" src={schedule} alt="schedule" />
         <Box>
           <Box component="img" src={group5221} alt="group5221" mb={8} sx={{ width: 224 }} />
           <AntTabs value={value} onChange={handleChange} centered variant="standard">
@@ -254,7 +254,7 @@ export default function Recruit() {
             </TabPanel>
           ))}
         </Box>
-        <Box component="img" src={group5203} alt="group5203" sx={{ width: 853 }} />
+        <Box component="img" src={questions} alt="questions" sx={{ width: 853 }} />
       </Box>
       <Box
         sx={{
@@ -264,8 +264,8 @@ export default function Recruit() {
           gap: 10,
         }}
       >
-        <Box component="img" src={group5218} alt="group5218" />
-        <Box component="img" src={group5217} alt="group5217" />
+        <Box component="img" src={howtoapply_mobile} alt="howtoapply_mobile" />
+        <Box component="img" src={schedule_mobile} alt="schedule_mobile" />
         <Box>
           <Box component="img" src={group5221} alt="group5221" mb={5} sx={{ width: 163 }} />
           <AntTabs value={value} onChange={handleChange} centered variant="fullWidth">
@@ -315,7 +315,7 @@ export default function Recruit() {
             </TabPanel>
           ))}
         </Box>
-        <Box component="img" src={group5220} alt="group5220" />
+        <Box component="img" src={questions_mobile} alt="questions_mobile" />
       </Box>
     </>
   );
