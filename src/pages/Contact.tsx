@@ -1,6 +1,6 @@
 import { Box, Card, Grid, IconButton, Link, Typography } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
-import { address, instagramAddress, mailAddress } from '../utils/commons';
+import { address, ceo, instagramAddress, mailAddress } from '../utils/commons';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import Map from '../components/Map';
 import group5206 from '../assets/contact/group5206.svg';
@@ -35,7 +35,7 @@ export default function Contact() {
               이메일
             </Typography>
             <Link color="common.white" href={`mailto:${mailAddress}`}>
-              {mailAddress} (한동대학교 대표)
+              {mailAddress} (한동대학교 대표 {ceo})
             </Link>
             <Box sx={{ height: 32 }} />
             <Typography
