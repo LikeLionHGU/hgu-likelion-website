@@ -18,10 +18,9 @@ export const pageInfos = {
 };
 
 export const address = '경상북도 포항시 북구 흥해읍 한동로 558 한동대학교';
-export const mailAddress = 'kdg1941@handong.ac.kr';
+export const mailAddress = 'rejames01@handong.ac.kr';
 export const instagramAddress = 'https://www.instagram.com/likelion_hgu/';
 export const githubAddress = 'https://github.com/LikeLionHGU';
 export const applyLink = 'https://walla.my/survey/qRm0QLd8TXrnRc6gMKAa';
-export const ceo = '김동규';
 
 export const position = { name: '한동대학교', latitude: 36.103116, longitude: 129.388368 };
