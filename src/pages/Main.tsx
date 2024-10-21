@@ -40,10 +40,10 @@ export default function Main() {
           >
             <Box sx={{ textAlign: { xs: 'start', sm: 'right' } }}>
               <Typography variant="h3">ONE. 교육합니다</Typography>
-              <Typography variant="h6">멋사 공식 도메인 계정과 강의 무료 제공</Typography>
+              <Typography variant="h6">멋사 대학에서 제공하는 다양한 특강 참여 기회</Typography>
               <Typography sx={{ maxWidth: 400, wordBreak: 'keep-all' }}>
-                멋사 공식 도메인 계정(likelion.org)을 받고 국내 최고의 기획/개발/디자인 강사님들의
-                강의를 통해 여러분들의 역량을 증진시켜보아요
+                멋쟁이사자처럼 대학에서 개최하는 수준 높은 최신 AI 툴 사용법, 소프트 스킬, 취업,
+                창업 특강에 참여하고 현업에서 바로 적용 가능한 실질적인 스킬을 습득해보아요!
               </Typography>
             </Box>
           </Grid>
@@ -89,16 +89,13 @@ export default function Main() {
             <Box
               sx={{
                 aspectRatio: '16 / 9',
-                backgroundColor: 'common.black',
+                backgroundColor: 'common.white',
                 borderRadius: 2,
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                p: 2,
               }}
-            >
-              <Box component="img" src={card3} alt="card3" />
-            </Box>
+              component="img"
+              src={card3}
+              alt="card3"
+            />
           </Grid>
           <Grid
             item
@@ -114,7 +111,7 @@ export default function Main() {
               <Typography variant="h3">THREE. 함께합니다</Typography>
               <Typography variant="h6">전국 멋사 대학 커뮤니티를 통한 초대형 네트워킹</Typography>
               <Typography sx={{ maxWidth: 400, wordBreak: 'keep-all' }}>
-                멋쟁이사자처럼 공식 디스코드를 통해 타대학(전국 61개 대학)과 소통할 수 있어요. 많은
+                멋쟁이사자처럼 공식 커뮤니티를 통해 타대학(전국 61개 대학)과 소통할 수 있어요. 많은
                 사람들의 다양한 통찰력, 새로운 관점을 얻어가고 더 나아가 그들과 협업 경험까지
                 가져보아요.
               </Typography>
