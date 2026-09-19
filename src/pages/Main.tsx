@@ -1,4 +1,4 @@
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import { KeyboardEvent, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import accomplishments from '../assets/main/accomplishments.svg';
@@ -7,7 +7,6 @@ import groupPhoto from '../assets/main/group_photo.png';
 import mainSchedule from '../assets/main/main_schedule.svg';
 import plannerIcon from '../assets/main/planner.svg';
 import recruitInformation from '../assets/main/recruit_information.svg';
-import trackIntroduction from '../assets/main/track_introduction.svg';
 import TrackModal from '../components/TrackModal';
 import { tracksInfo } from '../utils/commons';
 import {
@@ -41,6 +40,7 @@ const accomplishmentCaptions = ['성과 활동 01', '성과 활동 02', '성과 
 type TrackInfo = (typeof tracksInfo)[number];
 
 export default function Main() {
+  // js로 수정 필요
   const [selectedTrack, setSelectedTrack] = useState<TrackInfo | null>(null);
 
   const handleTrackKeyDown = (event: KeyboardEvent<HTMLDivElement>, track: TrackInfo) => {
@@ -99,7 +99,16 @@ export default function Main() {
         <ContentSection>
           <TrackGrid container columnSpacing={{ xs: 0, md: 8 }}>
             <Grid item xs={12} md={3}>
-              <Box component="img" src={trackIntroduction} alt="Track introduction" width="100%" />
+              {/* <Box component="img" src={trackIntroduction} alt="Track introduction" width="100%" /> */}
+              <Typography
+                sx={{
+                  fontFamily: 'Lemon Milk',
+                  fontStyle: 'normal',
+                  fontSize: 'clamp(0.5rem, 5.2vw, 2.2rem)',
+                }}
+              >
+                Track Introduction
+              </Typography>
             </Grid>
             <Grid item xs={12} md={9}>
               <Grid container columnSpacing={2} rowSpacing={2}>
