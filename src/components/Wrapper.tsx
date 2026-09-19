@@ -41,16 +41,18 @@ export function Wrapper({ children }: Props) {
   };
   const pageInfo = getPageInfo();
   const isMain = pathname === '/';
+  const isProject = pathname === '/projects' || pathname.startsWith('/projects/');
+  const isFullWidthPage = isProject;
   const isRecruit = pathname === '/recruit';
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
   return (
     <>
-      {!isMain && <Toolbar />}
+      {!isMain && !isFullWidthPage && <Toolbar />}
       {isMain ? (
         <MainHero />
-      ) : (
+      ) : !isFullWidthPage ? (
         <Heading sx={{ height: imageHeight, color: 'common.black' }}>
           <Container sx={{ display: 'flex', justifyContent: 'flex-start', px: 3 }}>
             <Box sx={{ wordBreak: 'keep-all' }}>
@@ -81,14 +83,18 @@ export function Wrapper({ children }: Props) {
             </Box>
           </Container>
         </Heading>
-      )}
-      {!isMain && (
+      ) : null}
+      {!isMain && !isFullWidthPage && (
         <BgImage />
       )}
       <Box sx={{ backgroundColor: isMain ? 'common.black' : 'background.default' }}>
-        <Container sx={{ px: isMain ? 0 : 3, py: isMain ? 0 : { xs: 10, sm: 15 } }}>
-          {children}
-        </Container>
+        {isFullWidthPage ? (
+          children
+        ) : (
+          <Container sx={{ px: isMain ? 0 : 3, py: isMain ? 0 : { xs: 10, sm: 15 } }}>
+            {children}
+          </Container>
+        )}
       </Box>
     </>
   );

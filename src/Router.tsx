@@ -5,6 +5,8 @@ import ScollProgressBar from './components/ScollProgressBar';
 import { Wrapper } from './components/Wrapper';
 import Contact from './pages/Contact';
 import Main from './pages/Main';
+import Project from './pages/Project';
+import ProjectDetail from './pages/ProjectDetail';
 import Recruit from './pages/Recruit';
 
 function Router() {
@@ -14,6 +16,8 @@ function Router() {
       <Wrapper>
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/projects" element={<Project />} />
+          <Route path="/projects/:projectId" element={<ProjectDetail />} />
           <Route path="/recruit" element={<Recruit />} />
           {/* <Route path="/apply" element={<Apply />} />
           <Route path="/faq" element={<FAQ />} /> */}
