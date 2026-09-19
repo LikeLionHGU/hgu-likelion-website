@@ -4,10 +4,11 @@ import group5185 from '../assets/group5185.svg';
 
 export default function ScollProgressBar() {
   const isProjectDetail = useMatch('/projects/:projectId');
+  const isGallery = useMatch('/gallery/*');
   const { scrollYProgress } = useScroll();
   const width = useTransform(scrollYProgress, (value) => `${Math.min(1, Math.max(0, value)) * 100}%`);
-  // The project detail design does not include the sticky banner.
-  if (isProjectDetail) return null;
+  // These photo-focused designs do not include the sticky banner.
+  if (isProjectDetail || isGallery) return null;
 
   return (
     <motion.div

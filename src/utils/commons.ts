@@ -1,6 +1,7 @@
 export const pages = [
   { title: 'HOME', to: '/' },
   { title: 'PROJECT', to: '/projects' },
+  { title: 'GALLERY', to: '/gallery' },
   { title: 'RECRUIT', to: '/recruit' },
   { title: 'CONTACT', to: '/contact' },
 ];
