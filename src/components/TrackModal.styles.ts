@@ -5,7 +5,7 @@ export const TrackDialog = styled(Modal)({
   display: 'grid',
   placeItems: 'center',
   padding: '1.5rem',
-  '& .MuiBackdrop-root': { backgroundColor: 'rgba(0, 0, 0, 0.85)', backdropFilter: 'blur(8px)' },
+  '& .MuiBackdrop-root': { backgroundColor: 'rgba(0, 0, 0, 0.85)' },
 });
 
 export const TrackDialogContainer = styled(Box)(({ theme }) => ({
@@ -14,7 +14,7 @@ export const TrackDialogContainer = styled(Box)(({ theme }) => ({
   width: '80%',
   height: 'min(1510px, calc(100vh - 3rem))',
   overflowY: 'auto',
-  padding: '6.5rem 15rem 7rem',
+  padding: '6.5rem clamp(24px, 12.5vw, 240px) 7rem',
   border: '1px solid rgba(255, 255, 255, 0.5)',
   borderRadius: 10,
   outline: 'none',
@@ -62,6 +62,7 @@ export const TrackDialogContent = styled(Box)(({ theme }) => ({
 export const TrackDialogSection = styled('section')({ display: 'grid', gap: 44 });
 
 export const TrackDialogSectionTitle = styled(Typography)(({ theme }) => ({
+  margin: 0,
   color: theme.palette.common.white,
   fontSize: 24,
   fontWeight: theme.typography.fontWeightBold,

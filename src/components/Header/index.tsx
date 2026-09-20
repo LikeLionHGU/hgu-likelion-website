@@ -9,16 +9,49 @@ import {
   IconButton,
   Menu,
   useTheme,
+  styled,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useMatch, useNavigate } from 'react-router-dom';
 import logoWImg from '../../assets/likelion_w_logo.png';
 import MenuIcon from '@mui/icons-material/Menu';
 import { pages } from '../../utils/commons';
 
+const HeaderBar = styled(AppBar, {
+  shouldForwardProp: (prop) => prop !== 'mainPage',
+})<{ mainPage: boolean }>(({ theme, mainPage }) => ({
+  boxShadow: 'none',
+  color: theme.palette.common.white,
+  backgroundImage: mainPage ? 'linear-gradient(#000, rgba(0,0,0,0.65) 182%)' : 'none',
+  '&.transparent': {
+    backgroundColor: mainPage ? 'transparent' : theme.palette.common.black,
+    transition: 'background-color 0.1s ease-out',
+  },
+  '&.paper': {
+    backgroundColor: mainPage ? 'transparent' : theme.palette.background.paper,
+    transition: 'background-color 0.1s ease-out',
+  },
+}));
+
+const HeaderContainer = styled(Container)(({ theme }) => ({
+  maxWidth: 1920, paddingLeft: 'clamp(30px, 4.6875vw, 90px)', paddingRight: 'clamp(30px, 4.6875vw, 90px)',
+  [theme.breakpoints.up('sm')]: {
+    paddingLeft: 'clamp(30px, 4.6875vw, 90px)', paddingRight: 'clamp(30px, 4.6875vw, 90px)',
+  },
+  '& .MuiToolbar-root': { minHeight: 100 },
+  '& img': { width: 'clamp(168px, 14.947917vw, 287px)', height: 'clamp(13px, 1.145833vw, 22px)' },
+  '& .MuiButton-root': { fontSize: 'clamp(14px, 0.9375vw, 18px)', fontWeight: 600 },
+  [theme.breakpoints.down('md')]: {
+    paddingLeft: 30, paddingRight: 18,
+    '& .MuiToolbar-root': { minHeight: 61 },
+    '& img': { width: 168, height: 13 },
+  },
+}));
+
 function Header() {
   const theme = useTheme();
   const navigate = useNavigate();
+  const isMain = Boolean(useMatch('/'));
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [position, setPosition] = useState(window.pageYOffset);
   const transparent = position < (theme.mixins.toolbar.minHeight as number);
@@ -46,31 +79,20 @@ function Header() {
   }, []);
 
   return (
-    <AppBar
+    <HeaderBar
+      mainPage={isMain}
       position="fixed"
       color="transparent"
-      sx={{
-        boxShadow: 0,
-        color: 'common.white',
-        '&.transparent': {
-          backgroundColor: 'common.black',
-          transition: 'background-color 0.1s ease-out',
-        },
-        '&.paper': {
-          backgroundColor: 'background.paper',
-          transition: 'background-color 0.1s ease-out',
-        },
-      }}
       className={`${transparent ? 'transparent' : 'paper'}`}
     >
-      <Container maxWidth="xl">
+      <HeaderContainer maxWidth={false}>
         <Toolbar disableGutters>
           <Box component={Link} to="/">
-            <Box component="img" src={logoWImg} height={18} />
+            <Box component="img" src={logoWImg} alt="LIKELION UNIV. 홈" />
           </Box>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton size="large" onClick={handleOpenNavMenu} color="inherit">
+            <IconButton size="large" onClick={handleOpenNavMenu} color="inherit" aria-label="메뉴 열기">
               <MenuIcon />
             </IconButton>
             <Menu
@@ -120,8 +142,8 @@ function Header() {
             ))}
           </Box>
         </Toolbar>
-      </Container>
-    </AppBar>
+      </HeaderContainer>
+    </HeaderBar>
   );
 }
 
