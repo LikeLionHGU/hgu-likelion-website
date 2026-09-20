@@ -33,9 +33,7 @@ const HeaderBar = styled(AppBar, {
   },
 }));
 
-const HeaderContainer = styled(Container, {
-  shouldForwardProp: (prop) => prop !== 'mainPage',
-})<{ mainPage: boolean }>(({ theme, mainPage }) => mainPage ? {
+const HeaderContainer = styled(Container)(({ theme }) => ({
   maxWidth: 1920, paddingLeft: 'clamp(30px, 4.6875vw, 90px)', paddingRight: 'clamp(30px, 4.6875vw, 90px)',
   [theme.breakpoints.up('sm')]: {
     paddingLeft: 'clamp(30px, 4.6875vw, 90px)', paddingRight: 'clamp(30px, 4.6875vw, 90px)',
@@ -48,7 +46,7 @@ const HeaderContainer = styled(Container, {
     '& .MuiToolbar-root': { minHeight: 61 },
     '& img': { width: 168, height: 13 },
   },
-} : {});
+}));
 
 function Header() {
   const theme = useTheme();
@@ -87,10 +85,10 @@ function Header() {
       color="transparent"
       className={`${transparent ? 'transparent' : 'paper'}`}
     >
-      <HeaderContainer mainPage={isMain} maxWidth={isMain ? false : 'xl'}>
+      <HeaderContainer maxWidth={false}>
         <Toolbar disableGutters>
           <Box component={Link} to="/">
-            <Box component="img" src={logoWImg} height={18} />
+            <Box component="img" src={logoWImg} alt="LIKELION UNIV. 홈" />
           </Box>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
