@@ -1,9 +1,8 @@
 export const pages = [
   { title: 'HOME', to: '/' },
   { title: 'PROJECT', to: '/projects' },
+  { title: 'TEAM', to: '/team' },
   { title: 'GALLERY', to: '/gallery' },
-  { title: 'RECRUIT', to: '/recruit' },
-  { title: 'CONTACT', to: '/contact' },
 ];
 
 export const pageInfos = {

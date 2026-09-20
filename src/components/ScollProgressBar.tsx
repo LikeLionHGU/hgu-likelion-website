@@ -7,11 +7,12 @@ export default function ScollProgressBar() {
   const isProjectDetail = useMatch('/projects/:projectId');
   const isGallery = useMatch('/gallery/*');
   const isMain = useMatch('/');
+  const isTeam = useMatch('/team');
   const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
   const { scrollYProgress } = useScroll();
   const width = useTransform(scrollYProgress, (value) => `${Math.min(1, Math.max(0, value)) * 100}%`);
   // These photo-focused designs do not include the sticky banner.
-  if (isProjectDetail || isGallery || (isMain && isMobile)) return null;
+  if (isProjectDetail || isGallery || isTeam || (isMain && isMobile)) return null;
 
   return (
     <motion.div

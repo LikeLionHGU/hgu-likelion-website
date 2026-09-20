@@ -43,7 +43,8 @@ export function Wrapper({ children }: Props) {
   const isMain = pathname === '/';
   const isProject = pathname === '/projects' || pathname.startsWith('/projects/');
   const isGallery = pathname === '/gallery' || pathname.startsWith('/gallery/');
-  const isFullWidthPage = isMain || isProject || isGallery;
+  const isTeam = pathname === '/team';
+  const isFullWidthPage = isMain || isProject || isGallery || isTeam;
   const isRecruit = pathname === '/recruit';
   useEffect(() => {
     window.scrollTo(0, 0);

@@ -50,9 +50,11 @@ const FooterSocial = styled(Box)({ display: 'flex', gap: 8 });
 
 function Footer() {
   const isMain = Boolean(useMatch('/'));
+  const isTeam = Boolean(useMatch('/team'));
+  const useFullWidthStyle = isMain || isTeam;
   return (
-    <FooterRoot component="footer" mainPage={isMain}>
-      <FooterContent mainPage={isMain} maxWidth={isMain ? false : 'lg'}>
+    <FooterRoot component="footer" mainPage={useFullWidthStyle}>
+      <FooterContent mainPage={useFullWidthStyle} maxWidth={useFullWidthStyle ? false : 'lg'}>
         <FooterLogo data-footer-logo src={logoWImg} alt="LIKELION UNIV." />
         <FooterDescription data-footer-description>
           <span>(주)멋쟁이사자처럼</span>|<span>한동대학교</span>
