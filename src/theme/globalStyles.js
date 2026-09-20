@@ -2,6 +2,7 @@
 import { GlobalStyles as MUIGlobalStyles } from '@mui/material';
 import lemonMilk from '../font/LemonMilk.otf';
 import lemonMilkBold from '../font/LemonMilkbold.otf';
+import montserratBold from '../font/MontserratBold.ttf';
 // ----------------------------------------------------------------------
 
 export default function GlobalStyles() {
@@ -9,6 +10,13 @@ export default function GlobalStyles() {
     <MUIGlobalStyles
       styles={{
         '@font-face': [
+          {
+            fontFamily: 'Montserrat',
+            fontStyle: 'normal',
+            fontWeight: 700,
+            fontDisplay: 'swap',
+            src: `url(${montserratBold}) format('truetype')`,
+          },
           // {
           //   fontFamily: 'Lemon Milk',
           //   fontStyle: 'normal',

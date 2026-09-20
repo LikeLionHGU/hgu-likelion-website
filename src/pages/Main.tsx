@@ -1,150 +1,145 @@
-import { Box, Grid, Typography } from '@mui/material';
-import { KeyboardEvent, useState } from 'react';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import accomplishments from '../assets/main/accomplishments.svg';
-import faq from '../assets/main/faq.svg';
+import { useNavigate } from 'react-router-dom';
 import groupPhoto from '../assets/main/group_photo.png';
-import mainSchedule from '../assets/main/main_schedule.svg';
 import plannerIcon from '../assets/main/planner.svg';
-import recruitInformation from '../assets/main/recruit_information.svg';
+import MainSchedule from '../components/MainSchedule';
+import TrackDetails, { TrackInfo } from '../components/TrackDetails';
 import TrackModal from '../components/TrackModal';
-import { tracksInfo } from '../utils/commons';
+import { applyLink, tracksInfo } from '../utils/commons';
+import { mainAccomplishments, mainFaqs, mainFeatures, mainRecruitment } from '../utils/main';
 import {
-  AccomplishmentGrid,
-  AccomplishmentImage,
-  AccomplishmentCard,
-  AccomplishmentCaption,
-  AccomplishmentTitle,
-  ContentSection,
-  FeatureDescription,
-  FeatureLabel,
-  FeatureList,
-  FeatureRow,
-  IntroTitle,
-  MainPage,
-  MoveButton,
-  SectionImage,
-  TrackCard,
-  TrackGrid,
-  TrackIcon,
-  TrackName,
+  AccomplishmentCard, AccomplishmentCaption, AccomplishmentDate, AccomplishmentGeneration,
+  AccomplishmentGrid, AccomplishmentImage, AccomplishmentViewport, ContentSection,
+  FaqAnswer, FaqHeading, FaqItem, FaqLayout, FaqList, FaqQuestion,
+  FeatureDescription, FeatureLabel, FeatureList, FeatureRow, HorizontalViewport,
+  IntroActions, IntroGrid, IntroPhoto, IntroTitle, MainPage, MobileTrackTab, MobileTrackTabs,
+  MoveButton, RecruitmentCard, RecruitmentGrid, RecruitmentHeading, RecruitmentLayout,
+  RecruitmentList, RecruitmentTitle, RuledHeading, SectionLayout, SectionTitle,
+  TrackCard, TrackCardGrid, TrackIcon, TrackName,
 } from '../components/Main.styles';
 
-const features = [
-  { label: '문제 발견', description: '일상 속 불편함과 사회적 필요를 외면하지 않습니다.' },
-  { label: '팀 협력', description: '다양한 전공과 배경을 가진 사자들이 함께합니다.' },
-  { label: '실천 기술', description: '배운 기술로 세상을 움직이는 프로젝트를 만듭니다.' },
-];
-
-const accomplishmentCaptions = ['성과 활동 01', '성과 활동 02', '성과 활동 03'];
-type TrackInfo = (typeof tracksInfo)[number];
-
 export default function Main() {
-  // js로 수정 필요
+  const navigate = useNavigate();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [selectedTrack, setSelectedTrack] = useState<TrackInfo | null>(null);
+  const [mobileTrack, setMobileTrack] = useState(0);
 
-  const handleTrackKeyDown = (event: KeyboardEvent<HTMLDivElement>, track: TrackInfo) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      setSelectedTrack(track);
-    }
-  };
+  useEffect(() => {
+    if (isMobile) setSelectedTrack(null);
+  }, [isMobile]);
 
   return (
     <>
-      <Helmet>
-        <title>멋쟁이사자처럼 한동대</title>
-      </Helmet>
-      <MainPage>
-        <ContentSection>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <IntroTitle>{'한동대학교\n멋쟁이사자처럼'}</IntroTitle>
+      <Helmet><title>멋쟁이사자처럼 한동대</title></Helmet>
+      <MainPage component="main">
+        <ContentSection aria-labelledby="main-intro-title">
+          <IntroGrid>
+            <IntroTitle as="h2" id="main-intro-title">{'한동대학교\n멋쟁이사자처럼'}</IntroTitle>
             <FeatureList>
-              {features.map((feature) => (
+              {mainFeatures.map((feature) => (
                 <FeatureRow key={feature.label}>
-                  <FeatureLabel>{feature.label}</FeatureLabel>
+                  <FeatureLabel as="h3">{feature.label}</FeatureLabel>
                   <FeatureDescription>{feature.description}</FeatureDescription>
                 </FeatureRow>
               ))}
             </FeatureList>
-          </Box>
-          <Box sx={{ display: 'flex', flexDirection: 'row-reverse' }} mb={9}>
-            <MoveButton variant="outlined" sx={{ marginLeft: '30px' }}>
-              당장 지원하기
-            </MoveButton>
-            <MoveButton variant="outlined">프로젝트 보러가기</MoveButton>
-          </Box>
-
-          <SectionImage src={groupPhoto} alt="한동대학교 멋쟁이사자처럼 단체 사진" />
+            <IntroActions>
+              <MoveButton variant="outlined" onClick={() => navigate('/projects')}>프로젝트 보러가기</MoveButton>
+              <MoveButton variant="outlined" href={applyLink} target="_blank" rel="noopener noreferrer">당장 지원하기</MoveButton>
+            </IntroActions>
+            <IntroPhoto src={groupPhoto} alt="한동대학교 멋쟁이사자처럼 단체 사진" loading="lazy" />
+          </IntroGrid>
         </ContentSection>
 
-        <ContentSection>
-          <AccomplishmentTitle src={accomplishments} alt="Accomplishments" />
-          <AccomplishmentGrid container columnSpacing={{ xs: 0, md: 3 }}>
-            {accomplishmentCaptions.map((caption) => (
-              <Grid item xs={12} md={4} key={caption}>
-                <AccomplishmentCard>
-                  <AccomplishmentCaption>{caption}</AccomplishmentCaption>
-                  <AccomplishmentImage src={groupPhoto} alt={caption} />
+        <ContentSection aria-labelledby="main-accomplishments-title">
+          <RuledHeading>
+            <SectionTitle as="h2" id="main-accomplishments-title">Accomplishments</SectionTitle>
+          </RuledHeading>
+          <AccomplishmentViewport role="region" aria-label="주요 성과, 좌우로 스크롤" tabIndex={0}>
+            <AccomplishmentGrid>
+              {mainAccomplishments.map((item) => (
+                <AccomplishmentCard component="figure" key={item.id}>
+                  <Box component="figcaption">
+                    <AccomplishmentGeneration>{item.generation}</AccomplishmentGeneration>
+                    <AccomplishmentCaption>{item.title}</AccomplishmentCaption>
+                    <AccomplishmentDate>{item.date}</AccomplishmentDate>
+                  </Box>
+                  <AccomplishmentImage src={groupPhoto} alt={`${item.generation} ${item.title} 활동 사진`} loading="lazy" />
                 </AccomplishmentCard>
-              </Grid>
-            ))}
-          </AccomplishmentGrid>
+              ))}
+            </AccomplishmentGrid>
+          </AccomplishmentViewport>
         </ContentSection>
 
-        <ContentSection>
-          <SectionImage src={mainSchedule} alt="Main schedule" />
-        </ContentSection>
+        <ContentSection aria-labelledby="main-schedule-title"><MainSchedule /></ContentSection>
 
-        <ContentSection>
-          <TrackGrid container columnSpacing={{ xs: 0, md: 8 }}>
-            <Grid item xs={12} md={3}>
-              {/* <Box component="img" src={trackIntroduction} alt="Track introduction" width="100%" /> */}
-              <Typography
-                sx={{
-                  fontFamily: 'Lemon Milk',
-                  fontStyle: 'normal',
-                  fontSize: 'clamp(0.5rem, 5.2vw, 2.2rem)',
-                }}
-              >
-                Track Introduction
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={9}>
-              <Grid container columnSpacing={2} rowSpacing={2}>
-                {tracksInfo.map((item) => (
-                  <Grid item xs={6} md={3} key={item.track}>
-                    <TrackCard
-                      role="button"
-                      tabIndex={0}
-                      aria-haspopup="dialog"
-                      aria-label={`${item.track} 트랙 상세 정보 열기`}
-                      onClick={() => setSelectedTrack(item)}
-                      onKeyDown={(event) => handleTrackKeyDown(event, item)}
-                    >
-                      <TrackName>{item.track}</TrackName>
-                      <TrackIcon src={plannerIcon} alt="" aria-hidden="true" />
-                    </TrackCard>
-                  </Grid>
+        <ContentSection aria-labelledby="main-tracks-title">
+          {isMobile ? (
+            <>
+              <SectionTitle as="h2" id="main-tracks-title">Track introduction</SectionTitle>
+              <MobileTrackTabs value={mobileTrack} onChange={(_, value) => setMobileTrack(value)}
+                variant="scrollable" scrollButtons={false} selectionFollowsFocus aria-label="트랙 선택">
+                {tracksInfo.map((track, index) => (
+                  <MobileTrackTab key={track.track} label={track.track} id={`main-track-tab-${index}`}
+                    aria-controls={`main-track-panel-${index}`} />
                 ))}
-              </Grid>
-            </Grid>
-          </TrackGrid>
+              </MobileTrackTabs>
+              <Box role="tabpanel" id={`main-track-panel-${mobileTrack}`} aria-labelledby={`main-track-tab-${mobileTrack}`} tabIndex={0}>
+                <TrackDetails track={tracksInfo[mobileTrack]} compact />
+              </Box>
+            </>
+          ) : (
+            <SectionLayout>
+              <SectionTitle as="h2" id="main-tracks-title">Track introduction</SectionTitle>
+              <TrackCardGrid>
+                {tracksInfo.map((track) => (
+                  <TrackCard key={track.track} aria-haspopup="dialog" aria-label={`${track.track} 트랙 상세 정보 열기`}
+                    onClick={() => setSelectedTrack(track)}>
+                    <TrackName>{track.track.charAt(0) + track.track.slice(1).toLowerCase()}</TrackName>
+                    <TrackIcon src={plannerIcon} alt="" aria-hidden="true" />
+                  </TrackCard>
+                ))}
+              </TrackCardGrid>
+            </SectionLayout>
+          )}
         </ContentSection>
 
-        <ContentSection>
-          <SectionImage src={recruitInformation} alt="Recruitment information" />
+        <ContentSection aria-labelledby="main-recruitment-title">
+          <RecruitmentLayout>
+            <RecruitmentHeading>
+              <SectionTitle as="h2" id="main-recruitment-title">Recruitment information</SectionTitle>
+            </RecruitmentHeading>
+            <HorizontalViewport role="region" aria-label="모집 안내, 좌우로 스크롤" tabIndex={0}>
+              <RecruitmentGrid>
+                {mainRecruitment.map((item, index) => (
+                  <RecruitmentCard key={item.title}>
+                    <RecruitmentTitle as="h3">{String(index + 1).padStart(2, '0')}<br />{item.title}</RecruitmentTitle>
+                    <RecruitmentList>{item.items.map((line) => <li key={line}>{line}</li>)}</RecruitmentList>
+                  </RecruitmentCard>
+                ))}
+              </RecruitmentGrid>
+            </HorizontalViewport>
+          </RecruitmentLayout>
         </ContentSection>
 
-        <ContentSection>
-          <SectionImage src={faq} alt="Frequently asked questions" />
+        <ContentSection aria-labelledby="main-faq-title">
+          <FaqLayout>
+            <FaqHeading><SectionTitle as="h2" id="main-faq-title">FAQ</SectionTitle></FaqHeading>
+            <FaqList component="dl">
+              {mainFaqs.map((item, index) => (
+                <FaqItem key={item.question}>
+                  <FaqQuestion as="dt"><span>Q{index + 1}. </span>{item.question}</FaqQuestion>
+                  <FaqAnswer as="dd">{item.answer}</FaqAnswer>
+                </FaqItem>
+              ))}
+            </FaqList>
+          </FaqLayout>
         </ContentSection>
       </MainPage>
-      <TrackModal
-        open={selectedTrack !== null}
-        track={selectedTrack}
-        onClose={() => setSelectedTrack(null)}
-      />
+      <TrackModal open={selectedTrack !== null} track={selectedTrack} onClose={() => setSelectedTrack(null)} />
     </>
   );
 }
