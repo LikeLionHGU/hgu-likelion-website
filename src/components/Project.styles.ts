@@ -1,8 +1,9 @@
+import { siteColors } from '../theme/siteTokens';
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 
-const PROJECT_ORANGE = '#FF731D';
+const PROJECT_ORANGE = siteColors.accent;
 
 export const ProjectPage = styled(Box)(({ theme }) => ({
   width: '100%',
@@ -19,14 +20,6 @@ export const ProjectContent = styled(Box)({
   paddingLeft: 'clamp(1.5rem, 4.947917vw, 5.9375rem)',
   paddingRight: 'clamp(1.5rem, 5.208333vw, 6.25rem)',
 });
-
-export const ProjectTitle = styled(Typography)(({ theme }) => ({
-  fontFamily: '"Lemon Milk", sans-serif',
-  fontSize: 'clamp(2rem, 3.90625vw, 4.6875rem)',
-  fontWeight: theme.typography.fontWeightBold,
-  lineHeight: 1.35,
-  letterSpacing: 0,
-}));
 
 export const ProjectLayout = styled(Box)(({ theme }) => ({
   display: 'grid',
@@ -64,21 +57,10 @@ export const FilterGroup = styled(Box)({
   gap: 20,
 });
 
-export const FilterLabel = styled(Typography)(({ theme }) => ({
-  color: theme.palette.common.white,
-  fontSize: 22,
-  fontWeight: theme.typography.fontWeightBold,
-  lineHeight: 1.2,
-  textAlign: 'left',
-  whiteSpace: 'nowrap',
-}));
-
-export const FilterList = styled(Box)({ display: 'grid', gap: 15, justifyItems: 'start' });
-
 export const FilterButton = styled('button')(({ theme }) => ({
   padding: 0,
   border: 0,
-  color: '#868585',
+  color: siteColors.muted,
   font: 'inherit',
   fontSize: 20,
   lineHeight: 1.2,
@@ -147,8 +129,6 @@ export const ProjectOverlay = styled(Box)(({ theme }) => ({
   '@media (prefers-reduced-motion: reduce)': { transition: 'none' },
 }));
 
-export const ProjectCardInfo = styled(Box)({ display: 'grid', minWidth: 0, gap: 10 });
-
 export const ProjectCardHeader = styled(Box)({
   display: 'flex',
   alignItems: 'flex-start',
@@ -166,22 +146,6 @@ export const ProjectCardHeading = styled(Box)({
   gap: '8px 15px',
 });
 
-export const ProjectName = styled(Typography)(({ theme }) => ({
-  color: theme.palette.common.white,
-  fontSize: 26,
-  fontWeight: theme.typography.fontWeightBold,
-  lineHeight: 1.2,
-  overflowWrap: 'anywhere',
-}));
-
-export const ProjectScope = styled(Typography)({
-  color: '#868585',
-  fontSize: 22,
-  fontWeight: 500,
-  lineHeight: 1.2,
-  whiteSpace: 'nowrap',
-});
-
 export const ProjectGeneration = styled(Typography)(({ theme }) => ({
   flexShrink: 0,
   display: 'flex',
@@ -196,13 +160,4 @@ export const ProjectGeneration = styled(Typography)(({ theme }) => ({
   fontWeight: theme.typography.fontWeightMedium,
   lineHeight: 1.1,
   whiteSpace: 'nowrap',
-}));
-
-export const ProjectDescription = styled(Typography)(({ theme }) => ({
-  color: theme.palette.common.white,
-  fontSize: 20,
-  fontWeight: 500,
-  lineHeight: 1.2,
-  wordBreak: 'keep-all',
-  overflowWrap: 'anywhere',
 }));

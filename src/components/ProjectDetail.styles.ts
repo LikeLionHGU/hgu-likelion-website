@@ -1,7 +1,8 @@
-import { Box, IconButton, Typography } from '@mui/material';
+import { siteColors } from '../theme/siteTokens';
+import { Box, IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-const PROJECT_ORANGE = '#FF731D';
+const PROJECT_ORANGE = siteColors.accent;
 
 export const DetailPage = styled(Box)(({ theme }) => ({
   overflow: 'hidden',
@@ -28,34 +29,6 @@ export const DetailLayout = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const DetailIdentity = styled(Box)({ gridArea: 'identity', minWidth: 0 });
-
-export const DetailLabel = styled(Typography)({
-  margin: 0,
-  color: '#868585',
-  fontSize: 'clamp(1rem, 1.041667vw, 1.125rem)',
-  fontWeight: 500,
-  lineHeight: 1.2,
-});
-
-export const DetailTitle = styled(Typography)(({ theme }) => ({
-  fontFamily: '"Lemon Milk", sans-serif',
-  fontSize: 'clamp(2.25rem, 2.604167vw, 3.125rem)',
-  fontWeight: theme.typography.fontWeightBold,
-  lineHeight: 1.36,
-  letterSpacing: 0,
-  overflowWrap: 'anywhere',
-}));
-
-export const DetailSubtitle = styled(Typography)(({ theme }) => ({
-  marginTop: 8,
-  fontSize: 'clamp(1rem, 1.041667vw, 1.25rem)',
-  fontWeight: theme.typography.fontWeightMedium,
-  lineHeight: 1.2,
-  wordBreak: 'keep-all',
-  overflowWrap: 'anywhere',
-}));
-
 export const DetailSummary = styled(Box)(({ theme }) => ({
   gridArea: 'summary',
   display: 'grid',
@@ -66,14 +39,11 @@ export const DetailSummary = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: { gap: 32 },
 }));
 
-export const DetailField = styled(Box)({ display: 'grid', alignContent: 'start', minWidth: 0, gap: 10 });
-
-export const DetailDescription = styled(Typography)({
-  fontSize: 'clamp(1rem, 1.145833vw, 1.375rem)',
-  fontWeight: 500,
-  lineHeight: 30 / 22,
-  whiteSpace: 'pre-wrap',
-  overflowWrap: 'anywhere',
+export const DetailField = styled(Box)({
+  display: 'grid',
+  alignContent: 'start',
+  minWidth: 0,
+  gap: 10,
 });
 
 export const DetailMetadata = styled(Box)(({ theme }) => ({
@@ -87,14 +57,6 @@ export const DetailMetadata = styled(Box)(({ theme }) => ({
   margin: 0,
   [theme.breakpoints.down('sm')]: { justifyContent: 'flex-start', columnGap: 40 },
 }));
-
-export const DetailValue = styled(Typography)({
-  margin: 0,
-  fontSize: 'clamp(1rem, 1.041667vw, 1.25rem)',
-  fontWeight: 500,
-  lineHeight: 1.2,
-  whiteSpace: 'pre-line',
-});
 
 export const DeliverableList = styled(Box)({
   display: 'flex',
@@ -122,28 +84,12 @@ export const DetailTeam = styled(Box)({
   maxWidth: 245.527,
 });
 
-export const TeamTitle = styled(Typography)(({ theme }) => ({
-  fontSize: 26,
-  fontWeight: theme.typography.fontWeightBold,
-  lineHeight: 1.2,
-}));
-
-export const TeamMembers = styled(Box)({ display: 'grid', gap: 20, margin: 0 });
-
 export const TeamMember = styled(Box)({
   display: 'grid',
   gridTemplateColumns: 'minmax(90px, 120.5px) minmax(0, 1fr)',
   alignItems: 'center',
   minWidth: 0,
 });
-
-export const TeamMemberNames = styled(Typography)(({ theme }) => ({
-  margin: 0,
-  fontSize: 'clamp(1.125rem, 1.145833vw, 1.375rem)',
-  fontWeight: theme.typography.fontWeightMedium,
-  lineHeight: 1.2,
-  wordBreak: 'keep-all',
-}));
 
 export const Gallery = styled(Box)({
   gridArea: 'gallery',
@@ -152,16 +98,6 @@ export const Gallery = styled(Box)({
   alignSelf: 'start',
   touchAction: 'pan-y',
   '&:focus-visible': { outline: `2px solid ${PROJECT_ORANGE}`, outlineOffset: 4 },
-});
-
-export const GalleryCounter = styled(Typography)({
-  position: 'absolute',
-  right: 0,
-  bottom: 'calc(100% + 20px)',
-  color: '#868585',
-  fontSize: 20,
-  fontWeight: 500,
-  lineHeight: 1.2,
 });
 
 export const GalleryImage = styled('img')({
@@ -179,7 +115,12 @@ export const GalleryPeek = styled(Box)(({ theme }) => ({
   height: '100%',
   pointerEvents: 'none',
   '& img': { height: '100%', width: 'auto', maxWidth: 'none' },
-  '&::after': { content: '""', position: 'absolute', inset: 0, backgroundColor: 'rgba(0, 0, 0, 0.65)' },
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    inset: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.65)',
+  },
   [theme.breakpoints.down('md')]: { display: 'none' },
 }));
 

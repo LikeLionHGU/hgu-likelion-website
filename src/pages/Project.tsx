@@ -1,27 +1,21 @@
+import { Typography, Box } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
 import { projectCards } from '../utils/projects';
 import {
   FilterButton,
   FilterGroup,
-  FilterLabel,
-  FilterList,
   ProjectCard,
   ProjectCardGrid,
   ProjectCardHeader,
   ProjectCardHeading,
-  ProjectCardInfo,
   ProjectContent,
-  ProjectDescription,
   ProjectFilter,
   ProjectGeneration,
   ProjectImage,
   ProjectImageWrap,
   ProjectLayout,
-  ProjectName,
   ProjectOverlay,
   ProjectPage,
-  ProjectScope,
-  ProjectTitle,
 } from '../components/Project.styles';
 
 const generations = ['13th', '12th', '11th'];
@@ -36,13 +30,21 @@ export default function Project() {
 
       <ProjectPage component="main">
         <ProjectContent>
-          <ProjectTitle variantMapping={{ body1: 'h1' }}>PROJECTs.</ProjectTitle>
+          <Typography variant="pageTitle" component="h1">
+            PROJECTs.
+          </Typography>
 
           <ProjectLayout>
             <ProjectFilter aria-label="프로젝트 분류">
               <FilterGroup>
-                <FilterLabel>( Gen )</FilterLabel>
-                <FilterList>
+                <Typography
+                  component="p"
+                  variant="cardLabel"
+                  sx={{ color: 'common.white', textAlign: 'left', whiteSpace: 'nowrap' }}
+                >
+                  ( Gen )
+                </Typography>
+                <Box component="div" sx={{ display: 'grid', gap: '15px', justifyItems: 'start' }}>
                   {generations.map((generation) => (
                     <FilterButton
                       key={generation}
@@ -52,12 +54,18 @@ export default function Project() {
                       {generation}
                     </FilterButton>
                   ))}
-                </FilterList>
+                </Box>
               </FilterGroup>
 
               <FilterGroup>
-                <FilterLabel>( Events )</FilterLabel>
-                <FilterList>
+                <Typography
+                  component="p"
+                  variant="cardLabel"
+                  sx={{ color: 'common.white', textAlign: 'left', whiteSpace: 'nowrap' }}
+                >
+                  ( Events )
+                </Typography>
+                <Box component="div" sx={{ display: 'grid', gap: '15px', justifyItems: 'start' }}>
                   {events.map((event) => (
                     <FilterButton
                       key={event}
@@ -67,13 +75,17 @@ export default function Project() {
                       {event}
                     </FilterButton>
                   ))}
-                </FilterList>
+                </Box>
               </FilterGroup>
             </ProjectFilter>
 
             <ProjectCardGrid>
               {projectCards.map(({ key, project }) => (
-                <ProjectCard key={key} to={`/projects/${project.id}`} aria-label={`${project.name} 프로젝트 상세 보기`}>
+                <ProjectCard
+                  key={key}
+                  to={`/projects/${project.id}`}
+                  aria-label={`${project.name} 프로젝트 상세 보기`}
+                >
                   <ProjectImageWrap>
                     <ProjectImage src={project.thumbnail} alt={`${project.name} 프로젝트`} />
                     <ProjectOverlay data-project-overlay>
@@ -81,16 +93,38 @@ export default function Project() {
                     </ProjectOverlay>
                   </ProjectImageWrap>
 
-                  <ProjectCardInfo>
+                  <Box component="div" sx={{ display: 'grid', minWidth: 0, gap: '10px' }}>
                     <ProjectCardHeader>
                       <ProjectCardHeading>
-                        <ProjectName>{project.name}</ProjectName>
-                        <ProjectScope>{project.scope}</ProjectScope>
+                        <Typography
+                          component="p"
+                          variant="cardTitle"
+                          sx={{ color: 'common.white', overflowWrap: 'anywhere' }}
+                        >
+                          {project.name}
+                        </Typography>
+                        <Typography
+                          component="p"
+                          variant="cardMeta"
+                          sx={{ color: 'site.muted', whiteSpace: 'nowrap' }}
+                        >
+                          {project.scope}
+                        </Typography>
                       </ProjectCardHeading>
                       <ProjectGeneration>{project.generation}</ProjectGeneration>
                     </ProjectCardHeader>
-                    <ProjectDescription>{project.subtitle}</ProjectDescription>
-                  </ProjectCardInfo>
+                    <Typography
+                      component="p"
+                      variant="bodyLarge"
+                      sx={{
+                        color: 'common.white',
+                        wordBreak: 'keep-all',
+                        overflowWrap: 'anywhere',
+                      }}
+                    >
+                      {project.subtitle}
+                    </Typography>
+                  </Box>
                 </ProjectCard>
               ))}
             </ProjectCardGrid>

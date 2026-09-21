@@ -1,20 +1,18 @@
-import { Box, ButtonBase, Typography } from '@mui/material';
+import { siteColors } from '../theme/siteTokens';
+import { Box, ButtonBase } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import {
   ProjectCard,
   ProjectCardGrid,
-  ProjectCardInfo,
   ProjectContent,
   ProjectGeneration,
   ProjectImageWrap,
   ProjectLayout,
-  ProjectName,
   ProjectOverlay,
   ProjectPage,
-  ProjectTitle,
 } from './Project.styles';
 
-export const GALLERY_ORANGE = '#FF731D';
+export const GALLERY_ORANGE = siteColors.accent;
 
 export const GalleryPage = styled(ProjectPage)({
   paddingBottom: 'clamp(5rem, 18.541667vw, 22.25rem)',
@@ -23,8 +21,6 @@ export const GalleryPage = styled(ProjectPage)({
 export const GalleryContent = styled(ProjectContent)({
   paddingRight: 'clamp(1.5rem, 5.364583vw, 6.4375rem)',
 });
-
-export const GalleryTitle = ProjectTitle;
 
 export const GalleryLayout = styled(ProjectLayout)(({ theme }) => ({
   gridTemplateColumns: 'minmax(180px, 394fr) minmax(0, 1284fr)',
@@ -42,26 +38,7 @@ export const GalleryThumbnail = styled(ProjectImageWrap)({ aspectRatio: '408 / 3
 
 export const GalleryOverlay = styled(ProjectOverlay)({ fontSize: 22.767 });
 
-export const GalleryCardInfo = styled(ProjectCardInfo)({ gap: 5 });
-
-export const GalleryName = styled(ProjectName)({
-  fontSize: 22,
-  lineHeight: 26 / 22,
-  wordBreak: 'keep-all',
-  '&:hover': { color: GALLERY_ORANGE },
-});
-
 export const GalleryGeneration = styled(ProjectGeneration)({ width: 64, height: 25, fontSize: 15 });
-
-export const GalleryDate = styled(Typography)({
-  color: '#868585',
-  fontSize: 18,
-  fontWeight: 500,
-  lineHeight: 21 / 18,
-  '&:hover': { color: GALLERY_ORANGE },
-});
-
-export const GalleryEmpty = styled(Typography)({ color: '#868585', fontSize: 18, lineHeight: 1.5 });
 
 export const AlbumPage = styled(GalleryPage)({
   paddingBottom: 'clamp(5rem, 19.53125vw, 23.4375rem)',
@@ -70,15 +47,6 @@ export const AlbumPage = styled(GalleryPage)({
 export const AlbumContent = styled(ProjectContent)({
   paddingLeft: 'clamp(1.5rem, 4.6875vw, 5.625rem)',
   paddingRight: 'clamp(1.5rem, 5.208333vw, 6.25rem)',
-});
-
-export const AlbumTitle = styled(ProjectTitle)({
-  marginLeft: 'clamp(0rem, 0.260417vw, 0.3125rem)',
-  fontFamily: '"Lemon Milk", Pretendard, sans-serif',
-  fontSize: 'clamp(2rem, 3.125vw, 3.75rem)',
-  color: GALLERY_ORANGE,
-  wordBreak: 'keep-all',
-  overflowWrap: 'anywhere',
 });
 
 export const AlbumMetadata = styled(Box)(({ theme }) => ({
@@ -93,24 +61,6 @@ export const AlbumMetadata = styled(Box)(({ theme }) => ({
   marginLeft: 'min(calc((100% + 40px) * 2 / 3), calc(100% - 409px))',
   [theme.breakpoints.down('lg')]: { marginLeft: 'auto' },
   [theme.breakpoints.down('sm')]: { margin: '28px 0 40px', justifyContent: 'flex-start', gap: 48 },
-}));
-
-export const AlbumField = styled(Box)({ display: 'grid', gap: 10, minWidth: 0 });
-
-export const AlbumLabel = styled(Typography)({
-  margin: 0,
-  fontSize: 18,
-  color: '#868585',
-  fontWeight: 500,
-  lineHeight: 21 / 18,
-});
-
-export const AlbumValue = styled(Typography)(({ theme }) => ({
-  margin: 0,
-  fontSize: 20,
-  color: theme.palette.common.white,
-  fontWeight: 500,
-  lineHeight: 1.2,
 }));
 
 export const AlbumPhotoGrid = styled(Box)(({ theme }) => ({

@@ -1,4 +1,5 @@
-import { Box, IconButton, Modal, Typography } from '@mui/material';
+import { siteColors } from '../theme/siteTokens';
+import { Box, IconButton, Modal } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 export const TrackDialog = styled(Modal)({
@@ -40,16 +41,6 @@ export const TrackDialogCloseButton = styled(IconButton)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: { top: 20, right: 20 },
 }));
 
-export const TrackDialogTitle = styled(Typography)(({ theme }) => ({
-  color: theme.palette.primary.main,
-  fontSize: 48,
-  fontWeight: theme.typography.fontWeightBold,
-  letterSpacing: '-0.04em',
-  lineHeight: 1,
-  textAlign: 'center',
-  [theme.breakpoints.down('sm')]: { fontSize: 32 },
-}));
-
 export const TrackDialogContent = styled(Box)(({ theme }) => ({
   display: 'grid',
   width: '100%',
@@ -57,17 +48,6 @@ export const TrackDialogContent = styled(Box)(({ theme }) => ({
   gap: 200,
   margin: '9.5rem auto 0',
   [theme.breakpoints.down('sm')]: { gap: '5rem', marginTop: '5rem' },
-}));
-
-export const TrackDialogSection = styled('section')({ display: 'grid', gap: 44 });
-
-export const TrackDialogSectionTitle = styled(Typography)(({ theme }) => ({
-  margin: 0,
-  color: theme.palette.common.white,
-  fontSize: 24,
-  fontWeight: theme.typography.fontWeightBold,
-  lineHeight: 1.2,
-  [theme.breakpoints.down('sm')]: { fontSize: 18 },
 }));
 
 export const CurriculumList = styled('ol')({
@@ -84,7 +64,7 @@ export const CurriculumList = styled('ol')({
     left: 10,
     width: 1,
     content: '""',
-    backgroundColor: '#FF731D',
+    backgroundColor: siteColors.accent,
   },
 });
 
@@ -101,23 +81,8 @@ export const CurriculumMarker = styled(Box)({
   width: 20,
   height: 20,
   borderRadius: '50%',
-  backgroundColor: '#FF731D',
+  backgroundColor: siteColors.accent,
 });
-
-export const CurriculumWeek = styled(Typography)(({ theme }) => ({
-  color: theme.palette.common.white,
-  fontSize: 18,
-  fontWeight: theme.typography.fontWeightBold,
-  lineHeight: 1.4,
-}));
-
-export const TrackDialogDescription = styled(Typography)(({ theme }) => ({
-  color: theme.palette.common.white,
-  fontSize: 18,
-  lineHeight: 1.5,
-  wordBreak: 'keep-all',
-  [theme.breakpoints.down('sm')]: { fontSize: 14 },
-}));
 
 export const LookingForList = styled('ol')({
   display: 'grid',
@@ -133,10 +98,3 @@ export const LookingForListItem = styled('li')({
   columnGap: 16,
   alignItems: 'start',
 });
-
-export const LookingForMarker = styled(Typography)(({ theme }) => ({
-  color: theme.palette.primary.main,
-  fontSize: 18,
-  fontWeight: theme.typography.fontWeightBold,
-  lineHeight: 1.5,
-}));

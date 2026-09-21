@@ -1,4 +1,4 @@
-import { Box, useMediaQuery, useTheme } from '@mui/material';
+import { Box, useMediaQuery, useTheme, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
@@ -10,14 +10,34 @@ import TrackModal from '../components/TrackModal';
 import { applyLink, tracksInfo } from '../utils/commons';
 import { mainAccomplishments, mainFaqs, mainFeatures, mainRecruitment } from '../utils/main';
 import {
-  AccomplishmentCard, AccomplishmentCaption, AccomplishmentDate, AccomplishmentGeneration,
-  AccomplishmentGrid, AccomplishmentImage, AccomplishmentViewport, ContentSection,
-  FaqAnswer, FaqHeading, FaqItem, FaqLayout, FaqList, FaqQuestion,
-  FeatureDescription, FeatureLabel, FeatureList, FeatureRow, HorizontalViewport,
-  IntroActions, IntroGrid, IntroPhoto, IntroTitle, MainPage, MobileTrackTab, MobileTrackTabs,
-  MoveButton, RecruitmentCard, RecruitmentGrid, RecruitmentHeading, RecruitmentLayout,
-  RecruitmentList, RecruitmentTitle, RuledHeading, SectionLayout, SectionTitle,
-  TrackCard, TrackCardGrid, TrackIcon, TrackName,
+  AccomplishmentCard,
+  AccomplishmentGrid,
+  AccomplishmentImage,
+  AccomplishmentViewport,
+  ContentSection,
+  FaqHeading,
+  FaqLayout,
+  FaqList,
+  FeatureList,
+  FeatureRow,
+  HorizontalViewport,
+  IntroActions,
+  IntroGrid,
+  IntroPhoto,
+  MainPage,
+  MobileTrackTab,
+  MobileTrackTabs,
+  MoveButton,
+  RecruitmentCard,
+  RecruitmentGrid,
+  RecruitmentHeading,
+  RecruitmentLayout,
+  RecruitmentList,
+  RuledHeading,
+  SectionLayout,
+  TrackCard,
+  TrackCardGrid,
+  TrackIcon,
 } from '../components/Main.styles';
 
 export default function Main() {
@@ -33,22 +53,52 @@ export default function Main() {
 
   return (
     <>
-      <Helmet><title>멋쟁이사자처럼 한동대</title></Helmet>
+      <Helmet>
+        <title>멋쟁이사자처럼 한동대</title>
+      </Helmet>
       <MainPage component="main">
         <ContentSection aria-labelledby="main-intro-title">
           <IntroGrid>
-            <IntroTitle as="h2" id="main-intro-title">{'한동대학교\n멋쟁이사자처럼'}</IntroTitle>
+            <Typography
+              variant="introTitle"
+              component="h2"
+              id="main-intro-title"
+              sx={{ gridArea: 'title', m: 0, color: 'common.white', whiteSpace: 'pre-line' }}
+            >
+              {'한동대학교\n멋쟁이사자처럼'}
+            </Typography>
             <FeatureList>
               {mainFeatures.map((feature) => (
                 <FeatureRow key={feature.label}>
-                  <FeatureLabel as="h3">{feature.label}</FeatureLabel>
-                  <FeatureDescription>{feature.description}</FeatureDescription>
+                  <Typography
+                    variant="featureTitle"
+                    component="h3"
+                    sx={{ m: 0, color: 'site.accent' }}
+                  >
+                    {feature.label}
+                  </Typography>
+                  <Typography
+                    component="p"
+                    variant="featureBody"
+                    sx={{ color: 'common.white', wordBreak: 'keep-all' }}
+                  >
+                    {feature.description}
+                  </Typography>
                 </FeatureRow>
               ))}
             </FeatureList>
             <IntroActions>
-              <MoveButton variant="outlined" onClick={() => navigate('/projects')}>프로젝트 보러가기</MoveButton>
-              <MoveButton variant="outlined" href={applyLink} target="_blank" rel="noopener noreferrer">당장 지원하기</MoveButton>
+              <MoveButton variant="outlined" onClick={() => navigate('/projects')}>
+                프로젝트 보러가기
+              </MoveButton>
+              <MoveButton
+                variant="outlined"
+                href={applyLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                당장 지원하기
+              </MoveButton>
             </IntroActions>
             <IntroPhoto src={groupPhoto} alt="한동대학교 멋쟁이사자처럼 단체 사진" loading="lazy" />
           </IntroGrid>
@@ -56,49 +106,123 @@ export default function Main() {
 
         <ContentSection aria-labelledby="main-accomplishments-title">
           <RuledHeading>
-            <SectionTitle as="h2" id="main-accomplishments-title">Accomplishments</SectionTitle>
+            <Typography
+              variant="sectionTitle"
+              component="h2"
+              id="main-accomplishments-title"
+              sx={{ m: 0, color: 'common.white' }}
+            >
+              Accomplishments
+            </Typography>
           </RuledHeading>
           <AccomplishmentViewport role="region" aria-label="주요 성과, 좌우로 스크롤" tabIndex={0}>
             <AccomplishmentGrid>
               {mainAccomplishments.map((item) => (
                 <AccomplishmentCard component="figure" key={item.id}>
                   <Box component="figcaption">
-                    <AccomplishmentGeneration>{item.generation}</AccomplishmentGeneration>
-                    <AccomplishmentCaption>{item.title}</AccomplishmentCaption>
-                    <AccomplishmentDate>{item.date}</AccomplishmentDate>
+                    <Typography
+                      component="p"
+                      variant="accomplishmentLabel"
+                      sx={{ color: { xs: 'site.accent', md: 'inherit' } }}
+                    >
+                      {item.generation}
+                    </Typography>
+                    <Typography
+                      component="p"
+                      variant="fluidBody"
+                      sx={{
+                        mt: { xs: '12px', md: '19px' },
+                        fontSize: { xs: 16, md: 'clamp(16px, 1.041667vw, 20px)' },
+                      }}
+                    >
+                      {item.title}
+                    </Typography>
+                    <Typography
+                      component="p"
+                      variant="labelSmall"
+                      sx={{
+                        display: { xs: 'block', md: 'none' },
+                        color: 'site.muted',
+                        mt: '4px',
+                        fontWeight: 400,
+                      }}
+                    >
+                      {item.date}
+                    </Typography>
                   </Box>
-                  <AccomplishmentImage src={groupPhoto} alt={`${item.generation} ${item.title} 활동 사진`} loading="lazy" />
+                  <AccomplishmentImage
+                    src={groupPhoto}
+                    alt={`${item.generation} ${item.title} 활동 사진`}
+                    loading="lazy"
+                  />
                 </AccomplishmentCard>
               ))}
             </AccomplishmentGrid>
           </AccomplishmentViewport>
         </ContentSection>
 
-        <ContentSection aria-labelledby="main-schedule-title"><MainSchedule /></ContentSection>
+        <ContentSection aria-labelledby="main-schedule-title">
+          <MainSchedule />
+        </ContentSection>
 
         <ContentSection aria-labelledby="main-tracks-title">
           {isMobile ? (
             <>
-              <SectionTitle as="h2" id="main-tracks-title">Track introduction</SectionTitle>
-              <MobileTrackTabs value={mobileTrack} onChange={(_, value) => setMobileTrack(value)}
-                variant="scrollable" scrollButtons={false} selectionFollowsFocus aria-label="트랙 선택">
+              <Typography
+                variant="sectionTitle"
+                component="h2"
+                id="main-tracks-title"
+                sx={{ m: 0, color: 'common.white' }}
+              >
+                Track introduction
+              </Typography>
+              <MobileTrackTabs
+                value={mobileTrack}
+                onChange={(_, value) => setMobileTrack(value)}
+                variant="scrollable"
+                scrollButtons={false}
+                selectionFollowsFocus
+                aria-label="트랙 선택"
+              >
                 {tracksInfo.map((track, index) => (
-                  <MobileTrackTab key={track.track} label={track.track} id={`main-track-tab-${index}`}
-                    aria-controls={`main-track-panel-${index}`} />
+                  <MobileTrackTab
+                    key={track.track}
+                    label={track.track}
+                    id={`main-track-tab-${index}`}
+                    aria-controls={`main-track-panel-${index}`}
+                  />
                 ))}
               </MobileTrackTabs>
-              <Box role="tabpanel" id={`main-track-panel-${mobileTrack}`} aria-labelledby={`main-track-tab-${mobileTrack}`} tabIndex={0}>
+              <Box
+                role="tabpanel"
+                id={`main-track-panel-${mobileTrack}`}
+                aria-labelledby={`main-track-tab-${mobileTrack}`}
+                tabIndex={0}
+              >
                 <TrackDetails track={tracksInfo[mobileTrack]} compact />
               </Box>
             </>
           ) : (
             <SectionLayout>
-              <SectionTitle as="h2" id="main-tracks-title">Track introduction</SectionTitle>
+              <Typography
+                variant="sectionTitle"
+                component="h2"
+                id="main-tracks-title"
+                sx={{ m: 0, color: 'common.white' }}
+              >
+                Track introduction
+              </Typography>
               <TrackCardGrid>
                 {tracksInfo.map((track) => (
-                  <TrackCard key={track.track} aria-haspopup="dialog" aria-label={`${track.track} 트랙 상세 정보 열기`}
-                    onClick={() => setSelectedTrack(track)}>
-                    <TrackName>{track.track.charAt(0) + track.track.slice(1).toLowerCase()}</TrackName>
+                  <TrackCard
+                    key={track.track}
+                    aria-haspopup="dialog"
+                    aria-label={`${track.track} 트랙 상세 정보 열기`}
+                    onClick={() => setSelectedTrack(track)}
+                  >
+                    <Typography component="p" variant="trackTitle" sx={{ color: 'inherit' }}>
+                      {track.track.charAt(0) + track.track.slice(1).toLowerCase()}
+                    </Typography>
                     <TrackIcon src={plannerIcon} alt="" aria-hidden="true" />
                   </TrackCard>
                 ))}
@@ -110,14 +234,29 @@ export default function Main() {
         <ContentSection aria-labelledby="main-recruitment-title">
           <RecruitmentLayout>
             <RecruitmentHeading>
-              <SectionTitle as="h2" id="main-recruitment-title">Recruitment information</SectionTitle>
+              <Typography
+                variant="sectionTitle"
+                component="h2"
+                id="main-recruitment-title"
+                sx={{ m: 0, color: 'common.white' }}
+              >
+                Recruitment information
+              </Typography>
             </RecruitmentHeading>
             <HorizontalViewport role="region" aria-label="모집 안내, 좌우로 스크롤" tabIndex={0}>
               <RecruitmentGrid>
                 {mainRecruitment.map((item, index) => (
                   <RecruitmentCard key={item.title}>
-                    <RecruitmentTitle as="h3">{String(index + 1).padStart(2, '0')}<br />{item.title}</RecruitmentTitle>
-                    <RecruitmentList>{item.items.map((line) => <li key={line}>{line}</li>)}</RecruitmentList>
+                    <Typography variant="sectionLabel" component="h3" sx={{ m: 0 }}>
+                      {String(index + 1).padStart(2, '0')}
+                      <br />
+                      {item.title}
+                    </Typography>
+                    <RecruitmentList>
+                      {item.items.map((line) => (
+                        <li key={line}>{line}</li>
+                      ))}
+                    </RecruitmentList>
                   </RecruitmentCard>
                 ))}
               </RecruitmentGrid>
@@ -127,19 +266,49 @@ export default function Main() {
 
         <ContentSection aria-labelledby="main-faq-title">
           <FaqLayout>
-            <FaqHeading><SectionTitle as="h2" id="main-faq-title">FAQ</SectionTitle></FaqHeading>
+            <FaqHeading>
+              <Typography
+                variant="sectionTitle"
+                component="h2"
+                id="main-faq-title"
+                sx={{ m: 0, color: 'common.white' }}
+              >
+                FAQ
+              </Typography>
+            </FaqHeading>
             <FaqList component="dl">
               {mainFaqs.map((item, index) => (
-                <FaqItem key={item.question}>
-                  <FaqQuestion as="dt"><span>Q{index + 1}. </span>{item.question}</FaqQuestion>
-                  <FaqAnswer as="dd">{item.answer}</FaqAnswer>
-                </FaqItem>
+                <Box
+                  component="div"
+                  key={item.question}
+                  sx={{ display: 'grid', gap: '12px', minWidth: 0 }}
+                >
+                  <Typography
+                    variant="question"
+                    component="dt"
+                    sx={{ '& span': { color: 'site.accent' } }}
+                  >
+                    <span>Q{index + 1}. </span>
+                    {item.question}
+                  </Typography>
+                  <Typography
+                    variant="answer"
+                    component="dd"
+                    sx={{ m: 0, color: 'site.muted', wordBreak: 'keep-all' }}
+                  >
+                    {item.answer}
+                  </Typography>
+                </Box>
               ))}
             </FaqList>
           </FaqLayout>
         </ContentSection>
       </MainPage>
-      <TrackModal open={selectedTrack !== null} track={selectedTrack} onClose={() => setSelectedTrack(null)} />
+      <TrackModal
+        open={selectedTrack !== null}
+        track={selectedTrack}
+        onClose={() => setSelectedTrack(null)}
+      />
     </>
   );
 }

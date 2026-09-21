@@ -1,18 +1,15 @@
+import { Typography, Box } from '@mui/material';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Navigate, useParams } from 'react-router-dom';
 import GalleryLightbox from '../components/GalleryLightbox';
 import {
   AlbumContent,
-  AlbumField,
-  AlbumLabel,
   AlbumMetadata,
   AlbumPage,
   AlbumPhotoButton,
   AlbumPhotoGrid,
   AlbumPhotoImage,
-  AlbumTitle,
-  AlbumValue,
 } from '../components/Gallery.styles';
 import { GalleryAlbum, galleryAlbums } from '../utils/gallery';
 
@@ -21,19 +18,40 @@ function Album({ album }: { album: GalleryAlbum }) {
 
   return (
     <>
-      <Helmet><title>{album.title} | 갤러리 | 멋쟁이사자처럼 한동대</title></Helmet>
+      <Helmet>
+        <title>{album.title} | 갤러리 | 멋쟁이사자처럼 한동대</title>
+      </Helmet>
       <AlbumPage component="main">
         <AlbumContent>
-          <AlbumTitle variantMapping={{ body1: 'h1' }}>{album.title}</AlbumTitle>
+          <Typography
+            variant="albumTitle"
+            component="h1"
+            sx={{
+              ml: 'clamp(0rem, 0.260417vw, 0.3125rem)',
+              color: 'site.accent',
+              wordBreak: 'keep-all',
+              overflowWrap: 'anywhere',
+            }}
+          >
+            {album.title}
+          </Typography>
           <AlbumMetadata component="dl">
-            <AlbumField>
-              <AlbumLabel variantMapping={{ body1: 'dt' }}>Generation</AlbumLabel>
-              <AlbumValue variantMapping={{ body1: 'dd' }}>{album.generation}th</AlbumValue>
-            </AlbumField>
-            <AlbumField>
-              <AlbumLabel variantMapping={{ body1: 'dt' }}>Date</AlbumLabel>
-              <AlbumValue variantMapping={{ body1: 'dd' }}>{album.date}</AlbumValue>
-            </AlbumField>
+            <Box component="div" sx={{ display: 'grid', gap: '10px', minWidth: 0 }}>
+              <Typography variant="captionLarge" component="dt" sx={{ m: 0, color: 'site.muted' }}>
+                Generation
+              </Typography>
+              <Typography variant="bodyLarge" component="dd" sx={{ m: 0, color: 'common.white' }}>
+                {album.generation}th
+              </Typography>
+            </Box>
+            <Box component="div" sx={{ display: 'grid', gap: '10px', minWidth: 0 }}>
+              <Typography variant="captionLarge" component="dt" sx={{ m: 0, color: 'site.muted' }}>
+                Date
+              </Typography>
+              <Typography variant="bodyLarge" component="dd" sx={{ m: 0, color: 'common.white' }}>
+                {album.date}
+              </Typography>
+            </Box>
           </AlbumMetadata>
           <AlbumPhotoGrid>
             {album.photos.map((photo, index) => (

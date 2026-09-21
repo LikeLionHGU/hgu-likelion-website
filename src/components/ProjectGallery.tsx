@@ -1,7 +1,8 @@
+import { Typography } from '@mui/material';
 import { KeyboardEvent, useRef, useState } from 'react';
 import arrow from '../assets/project/arrow-next.svg';
 import { ProjectInfo } from '../utils/projects';
-import { Gallery, GalleryArrow, GalleryCounter, GalleryImage, GalleryPeek } from './ProjectDetail.styles';
+import { Gallery, GalleryArrow, GalleryImage, GalleryPeek } from './ProjectDetail.styles';
 
 interface ProjectGalleryProps {
   name: string;
@@ -46,21 +47,42 @@ export default function ProjectGallery({ name, slides }: ProjectGalleryProps) {
           moveSlide(deltaX < 0 ? 1 : -1);
         }
       }}
-      onTouchCancel={() => { touchStart.current = null; }}
+      onTouchCancel={() => {
+        touchStart.current = null;
+      }}
     >
-      <GalleryCounter role="status" aria-live="polite" aria-atomic="true">
+      <Typography
+        component="p"
+        variant="bodyLarge"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        sx={{ position: 'absolute', right: 0, bottom: 'calc(100% + 20px)', color: 'site.muted' }}
+      >
         ({activeIndex + 1}/{slides.length})
-      </GalleryCounter>
-      <GalleryImage src={slides[activeIndex].image} alt={slides[activeIndex].alt} draggable={false} />
+      </Typography>
+      <GalleryImage
+        src={slides[activeIndex].image}
+        alt={slides[activeIndex].alt}
+        draggable={false}
+      />
       {hasMultipleSlides && (
         <>
           <GalleryPeek aria-hidden="true">
             <img src={slides[(activeIndex + 1) % slides.length].image} alt="" draggable={false} />
           </GalleryPeek>
-          <GalleryArrow aria-label="이전 프로젝트 이미지" data-direction="previous" onClick={() => moveSlide(-1)}>
+          <GalleryArrow
+            aria-label="이전 프로젝트 이미지"
+            data-direction="previous"
+            onClick={() => moveSlide(-1)}
+          >
             <img src={arrow} alt="" />
           </GalleryArrow>
-          <GalleryArrow aria-label="다음 프로젝트 이미지" data-direction="next" onClick={() => moveSlide(1)}>
+          <GalleryArrow
+            aria-label="다음 프로젝트 이미지"
+            data-direction="next"
+            onClick={() => moveSlide(1)}
+          >
             <img src={arrow} alt="" />
           </GalleryArrow>
         </>
