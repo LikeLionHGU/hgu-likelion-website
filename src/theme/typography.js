@@ -1,3 +1,6 @@
+import siteTypography from './siteTypography';
+import { siteFonts } from './siteTokens';
+
 // ----------------------------------------------------------------------
 
 export function remToPx(value) {
@@ -24,10 +27,11 @@ export function responsiveFontSizes({ sm, md, lg }) {
 
 // ----------------------------------------------------------------------
 
-const FONT_PRIMARY = 'Pretendard, sans-serif'; // 멋사 국문 Font
+const FONT_PRIMARY = siteFonts.body; // 멋사 국문 Font
 // const FONT_SECONDARY = 'CircularStd, sans-serif'; // Local Font
 
 const typography = {
+  ...siteTypography,
   fontFamily: FONT_PRIMARY,
   fontWeightRegular: 400,
   fontWeightMedium: 600,

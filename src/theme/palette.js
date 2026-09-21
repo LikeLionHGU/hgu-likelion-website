@@ -1,4 +1,5 @@
 import { alpha } from '@mui/material/styles';
+import { siteColors } from './siteTokens';
 
 // ----------------------------------------------------------------------
 
@@ -64,6 +65,7 @@ const ERROR = {
 };
 
 const COMMON = {
+  site: siteColors,
   common: { black: '#000', white: '#fff' },
   primary: PRIMARY,
   secondary: SECONDARY,
